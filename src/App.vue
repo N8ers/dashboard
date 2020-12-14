@@ -1,11 +1,18 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-    </div>
-    <router-view/>
+    <Dashboard />
   </div>
 </template>
+
+<script>
+import Dashboard from './components/Dashboard.vue';
+
+export default {
+  components: {
+    Dashboard,
+  },
+};
+</script>
 
 <style>
 #app {

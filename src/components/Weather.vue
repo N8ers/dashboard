@@ -1,12 +1,11 @@
 <template>
   <div>
-    <h1>Hello N8</h1>
+    Weather
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
-  props: {},
+  name: 'Weather',
 };
 </script>
