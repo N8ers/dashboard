@@ -1,6 +1,5 @@
 <template>
   <div>
-    Hello!
     <Header />
     <Todo />
     <Weather />

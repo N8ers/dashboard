@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div class="green">hi, green</div>
     <Dashboard />
   </div>
 </template>
@@ -20,7 +21,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /* color: #2c3e50; */
+  color: white;
+  background-color: #454545;
+}
+
+.green {
+  color: #19e0a3;
 }
 
 #nav {

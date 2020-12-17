@@ -1,6 +1,11 @@
 <template>
-  <div>
-    Favorite websites
+  <div class='favorite-wrapper'>
+    <div>Quick Launch</div>
+      <table class="table">
+        <tr v-for="(site, index) in userSettings.favoriteSites" :key="site + index">
+          <a :href="site.url" target="_blank">{{ site.name }}</a>
+        </tr>
+      </table>
   </div>
 </template>
 
@@ -16,3 +21,24 @@ export default {
   },
 };
 </script>
+
+<style>
+.favorite-wrapper {
+  border: 1px solid black;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.current {
+  border: 1px solid black;
+}
+
+.table {
+  margin: 0 auto;
+  text-align: left;
+}
+
+.table td {
+  margin-right: 10px;
+}
+</style>

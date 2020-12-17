@@ -1,4 +1,18 @@
 {
   "username": "N8ers",
-  "location": "Indianapolis"
+  "location": "Indianapolis",
+  "favoriteSites": [
+    { "name": "youtube", "url": "https://www.youtube.com/" },
+    { "name": "youtube", "url": "https://www.youtube.com/" },
+    { "name": "youtube", "url": "https://www.youtube.com/" },
+    { "name": "youtube", "url": "https://www.youtube.com/" },
+    { "name": "youtube", "url": "https://www.youtube.com/" },
+    { "name": "youtube", "url": "https://www.youtube.com/" }
+  ],
+  "todo": [
+    { "name": "walk turtle", "completed": false },
+    { "name": "walk rock", "completed": true },
+    { "name": "run turtle", "completed": false },
+    { "name": "walk trash", "completed": true }
+  ]
 }
