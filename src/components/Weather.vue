@@ -3,15 +3,16 @@
     <div>weather in {{ userSettings.location }}</div>
     <div v-if='weather'>
 
-      <div>
+      <div class="current">
         <span>{{ currently.temp }}&#176;F</span>
         <span>{{ currently.humidity }}% humidity</span>
-        <span>{{ currently.icon }}</span>
+        <span><img :src="'http://openweathermap.org/img/w/' + currently.icon + '.png'" /></span>
       </div>
 
       <table class="table">
         <tr v-for="day in forcast" :key="day.day">
           <td>{{ day.day }}</td>
+          <td> <img :src="'http://openweathermap.org/img/w/' + day.icon + '.png'" /></td>
           <td>{{ day.hi }}&#176;F</td>
           <td>{{ day.lo }}&#176;F</td>
         </tr>
@@ -89,6 +90,10 @@ export default {
   border: 1px solid black;
   width: 300px;
   margin: 0 auto;
+}
+
+.current {
+  border: 1px solid black;
 }
 
 .table {
