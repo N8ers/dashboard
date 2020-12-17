@@ -29,6 +29,8 @@ import axios from 'axios';
 import { format, addDays } from 'date-fns';
 import userSettings from '../../userSettings.json';
 
+const weatherKey = process.env.VUE_APP_OpenWeatherKey;
+
 export default {
   name: 'Weather',
   data() {
@@ -39,13 +41,12 @@ export default {
   },
   methods: {
     async getWeather() {
-      const apiKey = '5995721e7c8cb4c389ef7a0924b1b0eb';
+      const apiKey = weatherKey;
       // const city = this.userSettings.location;
       const corsPrefix = 'https://cors-anywhere.herokuapp.com/';
       const units = 'imperial';
       const lat = 39.7684;
       const lng = 86.1581;
-      // const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${this.userSettings.location}&appid=${apiKey}&units=imperial`);
       const response = await axios.get(`${corsPrefix}http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly&appid=${apiKey}&units=${units}`);
       this.weather = response.data;
     },
