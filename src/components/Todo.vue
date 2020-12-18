@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="todo-wrapper green-border">
     <div>ToDo</div>
     <ul v-for="todo in userSettings.todo" :key="todo.name">
       <li>{{ todo.name }} | done: {{ todo.completed }}</li>
@@ -19,3 +19,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.todo-wrapper {
+  width: 400px;
+}
+</style>

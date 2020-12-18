@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="green">hi, green</div>
+    <div class="green">hi, green #19e0a3</div>
     <Dashboard />
   </div>
 </template>
@@ -16,6 +16,10 @@ export default {
 </script>
 
 <style>
+* {
+  margin: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,10 +28,16 @@ export default {
   /* color: #2c3e50; */
   color: white;
   background-color: #454545;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .green {
   color: #19e0a3;
+}
+
+.green-border {
+  border: 1px solid #19e0a3;
 }
 
 #nav {

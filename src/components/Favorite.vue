@@ -1,5 +1,5 @@
 <template>
-  <div class='favorite-wrapper'>
+  <div class='favorite-wrapper green-border'>
     <div>Quick Launch</div>
       <table class="table">
         <tr v-for="(site, index) in userSettings.favoriteSites" :key="site + index">
@@ -24,7 +24,6 @@ export default {
 
 <style>
 .favorite-wrapper {
-  border: 1px solid black;
   width: 300px;
   margin: 0 auto;
 }

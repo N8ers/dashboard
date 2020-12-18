@@ -1,5 +1,5 @@
 <template>
-  <div class='weather-wrapper'>
+  <div class='weather-wrapper green-border'>
     <div>weather in {{ userSettings.location }}</div>
     <div v-if='weather'>
 
@@ -17,9 +17,6 @@
           <td>{{ day.lo }}&#176;F</td>
         </tr>
       </table>
-      <!-- <div v-for="day in forcast" :key="day.day">
-         {{ day.day }} hi{{ day.hi }}&#176;F | lo:{{ day.lo }}&#176;F
-      </div> -->
 
     </div>
   </div>
@@ -87,7 +84,6 @@ export default {
 
 <style>
 .weather-wrapper {
-  border: 1px solid black;
   width: 300px;
   margin: 0 auto;
 }
