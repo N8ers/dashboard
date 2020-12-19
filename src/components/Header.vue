@@ -1,7 +1,7 @@
 <template>
   <div class="header-wrapper green-border">
-    <h1 class="greeting">Hey, {{ userSettings.username }}</h1>
-    <h3 class="date">happy {{ date.day }}, {{ date.date }}</h3>
+    <h1 class="greeting">Hey {{ userSettings.username }}</h1>
+    <h3 class="date">happy {{ date.day }}, {{ date.date }}!</h3>
   </div>
 </template>
 

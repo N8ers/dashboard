@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="green">hi, green #19e0a3</div>
+    <div class="gray green-background">hey, gray #454545</div>
     <Dashboard />
   </div>
 </template>
@@ -35,9 +36,16 @@ export default {
 .green {
   color: #19e0a3;
 }
+.gray {
+  color: #454545;;
+}
 
 .green-border {
   border: 1px solid #19e0a3;
+}
+
+.green-background {
+  background-color: #19e0a3;
 }
 
 #nav {
@@ -51,5 +59,34 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.m-10 {
+  margin: 10px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: left;
+}
+
+.columns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.column {
+  margin: 20px;
 }
 </style>

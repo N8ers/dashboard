@@ -4,8 +4,8 @@
     <Favorite />
 
     <div class="row columns">
-      <Todo />
-      <Weather />
+      <Todo class="column" />
+      <Weather class="column" />
     </div>
   </div>
 </template>
@@ -28,8 +28,5 @@ export default {
 </script>
 
 <style>
-.columns {
-  display: flex;
-  justify-content: space-evenly;
-}
+
 </style>

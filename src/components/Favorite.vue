@@ -1,11 +1,16 @@
 <template>
   <div class='favorite-wrapper green-border'>
-    <div>Quick Launch</div>
-      <table class="table">
-        <tr v-for="(site, index) in userSettings.favoriteSites" :key="site + index">
-          <a :href="site.url" target="_blank">{{ site.name }}</a>
-        </tr>
-      </table>
+      <h3 class="m-10">Quick Launch</h3>
+
+      <span
+      class="green-border quick-link"
+      v-for="(site, index) in userSettings.favoriteSites"
+      :key="site + index"
+      >
+      <button @click="launchFavorite(site.url)">
+        {{ site.name }}
+      </button>
+      </span>
   </div>
 </template>
 
@@ -19,13 +24,18 @@ export default {
       userSettings,
     };
   },
+  methods: {
+    launchFavorite(url) {
+      window.open(url, '_blank');
+    },
+
+  },
 };
 </script>
 
 <style>
 .favorite-wrapper {
-  width: 300px;
-  margin: 0 auto;
+  margin: 20px;
 }
 
 .current {
@@ -39,5 +49,20 @@ export default {
 
 .table td {
   margin-right: 10px;
+}
+
+.quick-link {
+  margin: 10px;
+}
+
+button {
+  background-color: #454545;
+  color:#19e0a3;
+  text-align: center;
+  text-decoration: none;
+}
+
+button:hover {
+  cursor: pointer;
 }
 </style>

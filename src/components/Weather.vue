@@ -1,22 +1,33 @@
 <template>
   <div class='weather-wrapper green-border'>
-    <div>weather in {{ userSettings.location }}</div>
+    <h3 class="m-10">weather in {{ userSettings.location }}</h3>
     <div v-if='weather'>
 
-      <div class="current">
-        <span>{{ currently.temp }}&#176;F</span>
-        <span>{{ currently.humidity }}% humidity</span>
-        <span><img :src="'http://openweathermap.org/img/w/' + currently.icon + '.png'" /></span>
+      <div class="current columns">
+        <div class="colum align-left">
+          <div class="current-temp">{{ currently.temp }}&#176;F</div>
+          <div class="current-humidity">{{ currently.humidity }}% humidity</div>
+        </div>
+        <div class="colum">
+          <img class="current-icon" :src="'http://openweathermap.org/img/w/' + currently.icon + '.png'" />
+          <div>{{ currently.description }}</div>
+        </div>
       </div>
 
-      <table class="table">
-        <tr v-for="day in forcast" :key="day.day">
-          <td>{{ day.day }}</td>
-          <td> <img :src="'http://openweathermap.org/img/w/' + day.icon + '.png'" /></td>
-          <td>{{ day.hi }}&#176;F</td>
-          <td>{{ day.lo }}&#176;F</td>
-        </tr>
-      </table>
+      <div v-for="(day, index) in forcast" :key="day.day">
+        <div :class="index % 2 === 0 ? 'even-day': 'odd-day'" class="columns">
+          <div class="forcast-column align-left">
+            <span class="">{{ day.day }}</span>
+          </div>
+          <div class="forcast-column">
+            <span> <img :src="'http://openweathermap.org/img/w/' + day.icon + '.png'" /></span>
+          </div>
+          <div class="forcast-column align-right">
+            <span>{{ day.hi }}&#176;F</span>
+            <span>{{ day.lo }}&#176;F</span>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -55,6 +66,7 @@ export default {
         hi: Math.round(this.weather.daily[dayIndex].temp.max),
         lo: Math.round(this.weather.daily[dayIndex].temp.min),
         icon: this.weather.daily[dayIndex].weather[0].icon,
+        description: this.weather.daily[dayIndex].weather[0].description,
       };
     },
   },
@@ -64,16 +76,17 @@ export default {
         temp: Math.round(this.weather.current.temp),
         humidity: Math.round(this.weather.current.humidity),
         icon: this.weather.current.weather[0].icon,
+        description: this.weather.current.weather[0].description,
       };
     },
     forcast() {
-      return {
-        day1: this.dayClass(0),
-        day2: this.dayClass(1),
-        day3: this.dayClass(2),
-        day4: this.dayClass(3),
-        day5: this.dayClass(4),
-      };
+      return [
+        this.dayClass(0),
+        this.dayClass(1),
+        this.dayClass(2),
+        this.dayClass(3),
+        this.dayClass(4),
+      ];
     },
   },
   created() {
@@ -90,6 +103,19 @@ export default {
 
 .current {
   border: 1px solid black;
+  padding: 10px;
+}
+
+.current-temp {
+  font-size: 28px;
+}
+
+.forcast-column {
+  width: 100px;
+  margin: 5px;
+  margin-bottom: 5px;
+  vertical-align: center;
+  height: 50px;
 }
 
 .table {
@@ -101,4 +127,18 @@ export default {
   margin-right: 10px;
 }
 
+.even-day {
+  background-color: #333333;
+}
+.odd-day {
+  background-color: #454545;
+}
+
+.day-container {
+  width: 100%;
+}
+
+.forcast-img {
+  margin: 0 auto;
+}
 </style>
