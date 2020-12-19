@@ -1,5 +1,11 @@
 <template>
   <div>
+    <img
+      src="https://www.flaticon.com/svg/static/icons/svg/17/17789.svg"
+      class="gear-icon"
+      @click="openSettings"
+    />
+
     <Header />
     <Favorite />
 
@@ -24,9 +30,10 @@ export default {
     Weather,
     Favorite,
   },
+  methods: {
+    openSettings() {
+      alert('SETTINGS');
+    },
+  },
 };
 </script>
-
-<style>
-
-</style>

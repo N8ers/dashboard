@@ -89,4 +89,14 @@ export default {
 .column {
   margin: 20px;
 }
+
+.gear-icon {
+  height: 20px;
+  width: 20px;
+  float: right;
+}
+
+.gear-icon:hover {
+  cursor: pointer;
+}
 </style>
