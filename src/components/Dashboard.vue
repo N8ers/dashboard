@@ -1,10 +1,11 @@
 <template>
   <div>
-    <img
-      src="https://www.flaticon.com/svg/static/icons/svg/17/17789.svg"
-      class="gear-icon"
-      @click="openSettings"
-    />
+    <router-link to="/settings">
+      <img
+        src="https://www.flaticon.com/svg/static/icons/svg/17/17789.svg"
+        class="gear-icon"
+      />
+    </router-link>
 
     <Header />
     <Favorite />
@@ -30,10 +31,6 @@ export default {
     Weather,
     Favorite,
   },
-  methods: {
-    openSettings() {
-      alert('SETTINGS');
-    },
-  },
+  methods: {},
 };
 </script>

@@ -2,17 +2,14 @@
   <div id="app">
     <div class="green">hi, green #19e0a3</div>
     <div class="gray green-background">hey, gray #454545</div>
-    <Dashboard />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Dashboard from './components/Dashboard.vue';
 
 export default {
-  components: {
-    Dashboard,
-  },
+  components: {},
 };
 </script>
 
