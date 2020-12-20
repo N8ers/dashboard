@@ -1,6 +1,12 @@
 {
   "username": "N8ers",
-  "location": "Indianapolis",
+  "location": {
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "country": "United States",
+    "lat": null,
+    "lng": null
+  },
   "favoriteSites": [
     { "name": "youtube", "url": "https://www.youtube.com/" },
     { "name": "youtube", "url": "https://www.youtube.com/" },

@@ -1,6 +1,6 @@
 <template>
   <div class='weather-wrapper green-border'>
-    <h3 class="m-10">weather in {{ userSettings.location }}</h3>
+    <h3 class="m-10">weather in {{ userSettings.location.name }}</h3>
     <div v-if='weather'>
 
       <div class="current columns">

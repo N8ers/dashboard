@@ -12,7 +12,8 @@
       <label>User name:</label>
       <input type="text" v-model="userSettings.username" />
       <label>Location:</label>
-      <input type="text" v-model="userSettings.location" />
+      <input type="text" v-model="userSettings.location.name" />
+      <input type="text" ref="search" v-model="location" />
     </fieldset>
   </div>
 </template>
@@ -25,7 +26,26 @@ export default {
   data() {
     return {
       userSettings,
+      location: null,
     };
+  },
+  methods: {
+    initLocationSearch() {
+      const autocomplete = new window.google.maps.places.Autocomplete(this.$refs.search);
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        this.location = {
+          city: place.address_components[0].long_name,
+          state: place.address_components[2].long_name,
+          country: place.address_components[3].long_name,
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lat(),
+        };
+      });
+    },
+  },
+  mounted() {
+    window.checkAndAttachMapScript(this.initLocationSearch);
   },
 };
 </script>
