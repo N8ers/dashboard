@@ -5,20 +5,27 @@
     </router-link>
 
     <button>LogOut</button>
+    <br />
 
     <fieldset>
-      <div>Name:</div>
-      <div>Email:</div>
-      <div>Change location:</div>
+      <button>update</button>
+      <label>User name:</label>
+      <input type="text" v-model="userSettings.username" />
+      <label>Location:</label>
+      <input type="text" v-model="userSettings.location" />
     </fieldset>
   </div>
 </template>
 
 <script>
+import userSettings from '../../userSettings.json';
 
 export default {
   name: 'Settings',
-  components: {
+  data() {
+    return {
+      userSettings,
+    };
   },
 };
 </script>
