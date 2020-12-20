@@ -9,9 +9,7 @@ export default new Vuex.Store({
     user: {
       username: null,
       location: {
-        city: null,
-        state: null,
-        country: null,
+        address: null,
         lat: null,
         lng: null,
       },

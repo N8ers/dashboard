@@ -35,9 +35,7 @@ export default {
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
         const updatedLocation = {
-          city: place.address_components[0].long_name,
-          state: place.address_components[2].long_name,
-          country: place.address_components[3].long_name,
+          address: place.formatted_address,
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lat(),
         };
