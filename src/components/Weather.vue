@@ -1,6 +1,6 @@
 <template>
   <div class='weather-wrapper green-border'>
-    <h3 class="m-10">weather in {{ userSettings.location.name }}</h3>
+    <h3 class="m-10">weather in {{ location.city }} {{ location.state }}</h3>
     <div v-if='weather'>
 
       <div class="current columns">
@@ -51,11 +51,9 @@ export default {
   methods: {
     async getWeather() {
       const apiKey = weatherKey;
-      // const city = this.userSettings.location;
       const corsPrefix = 'https://cors-anywhere.herokuapp.com/';
       const units = 'imperial';
-      const lat = 39.7684;
-      const lng = 86.1581;
+      const { lat, lng } = this.location;
       const response = await axios.get(`${corsPrefix}http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly&appid=${apiKey}&units=${units}`);
       this.weather = response.data;
     },
@@ -88,9 +86,14 @@ export default {
         this.dayClass(4),
       ];
     },
+    location() {
+      return this.$store.state.user.location;
+    },
   },
   created() {
-    this.getWeather();
+    if (this.location.lat && this.location.lng) {
+      this.getWeather();
+    }
   },
 };
 </script>
