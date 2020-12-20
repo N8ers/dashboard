@@ -2,9 +2,7 @@
   "user": {
     "username": "N8ers",
     "location": {
-      "city": "Indianapolis",
-      "state": "Indiana",
-      "country": "United States",
+      "address": "Indianapolis, IN, USA",
       "lat": 39.768403,
       "lng": 39.768403
     }

@@ -7,26 +7,31 @@
     <button>LogOut</button>
     <br />
 
+    <button @click="saveChanges">update</button>
+    <br />
+
     <fieldset>
-      <button>update</button>
       <label>User name:</label>
-      <input type="text" v-model="userSettings.user.username" />
+      <input type="text" />
       <label>Location:</label>
-      <input type="text" v-model="userSettings.user.location.name" />
-      <input type="text" ref="search" v-model="location" />
+      <input
+        type="text"
+        ref="search"
+        :placeholder="location.address"
+        v-model="location.address"
+      />
     </fieldset>
   </div>
 </template>
 
 <script>
-import userSettings from '../../userSettings.json';
+import _clonedeep from 'lodash.clonedeep';
 
 export default {
   name: 'Settings',
   data() {
     return {
-      userSettings,
-      location: null,
+      updatedLocation: null,
     };
   },
   methods: {
@@ -34,13 +39,20 @@ export default {
       const autocomplete = new window.google.maps.places.Autocomplete(this.$refs.search);
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
-        const updatedLocation = {
+        this.updatedLocation = {
           address: place.formatted_address,
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lat(),
         };
-        this.$store.dispatch('updateLocation', updatedLocation);
       });
+    },
+    saveChanges() {
+      this.$store.dispatch('updateLocation', this.updatedLocation);
+    },
+  },
+  computed: {
+    location() {
+      return _clonedeep(this.$store.state.user.location);
     },
   },
   mounted() {
