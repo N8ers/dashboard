@@ -24,7 +24,9 @@ export default new Vuex.Store({
     setLocation(state, payload) {
       state.user.location = payload;
     },
-    setFavoirteSites() {},
+    setFavoriteSites(state, payload) {
+      state.favoriteSites = payload;
+    },
     setTodos() {},
   },
   actions: {
@@ -34,7 +36,12 @@ export default new Vuex.Store({
     updateLocation(context, location) {
       this.commit('setLocation', location);
     },
-    getFavoriteSites() {},
+    getFavoriteSites() {
+      this.commit('setFavoriteSites', dummyEndpoint.favoriteSites);
+    },
+    updateFavoriteSites(context, sites) {
+      this.commit('setFavoriteSites', sites);
+    },
     getTodos() {},
   },
   modules: {

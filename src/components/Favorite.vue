@@ -2,11 +2,11 @@
   <div class='favorite-wrapper green-border'>
       <h3 class="m-10">Quick Launch</h3>
 
-      <button v-if="editMode" @click="editMode = !editMode">Save</button>
+      <button v-if="editMode" @click="saveFavorites">Save</button>
       <button v-if="!editMode" @click="editMode = !editMode">Edit</button>
 
       <div v-if="editMode">
-        <div v-for="(site, index) in userSettings.favoriteSites" :key="site + index" green-border>
+        <div v-for="(site, index) in favoriteSites" :key="site + index" green-border>
           <label>name: </label>
           <input v-model="site.name" />
           <label>url: </label>
@@ -17,7 +17,7 @@
       <div v-if="!editMode">
         <span
           class="green-border quick-link"
-          v-for="(site, index) in userSettings.favoriteSites"
+          v-for="(site, index) in favoriteSites"
           :key="site + index"
         >
           <button @click="launchFavorite(site.url)">
@@ -30,21 +30,31 @@
 </template>
 
 <script>
-import userSettings from '../../userSettings.json';
+import _clonedeep from 'lodash.clonedeep';
 
 export default {
   name: 'Header',
   data() {
     return {
       editMode: false,
-      userSettings,
     };
   },
   methods: {
     launchFavorite(url) {
       window.open(url, '_blank');
     },
-
+    saveFavorites() {
+      this.editMode = !this.editMode;
+      this.$store.dispatch('updateFavoriteSites', this.favoriteSites);
+    },
+  },
+  computed: {
+    favoriteSites() {
+      return _clonedeep(this.$store.state.favoriteSites);
+    },
+  },
+  created() {
+    this.$store.dispatch('getFavoriteSites');
   },
 };
 </script>
