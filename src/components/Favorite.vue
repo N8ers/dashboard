@@ -2,15 +2,30 @@
   <div class='favorite-wrapper green-border'>
       <h3 class="m-10">Quick Launch</h3>
 
-      <span
-      class="green-border quick-link"
-      v-for="(site, index) in userSettings.favoriteSites"
-      :key="site + index"
-      >
-      <button @click="launchFavorite(site.url)">
-        {{ site.name }}
-      </button>
-      </span>
+      <button v-if="editMode" @click="editMode = !editMode">Save</button>
+      <button v-if="!editMode" @click="editMode = !editMode">Edit</button>
+
+      <div v-if="editMode">
+        <div v-for="(site, index) in userSettings.favoriteSites" :key="site + index" green-border>
+          <label>name: </label>
+          <input v-model="site.name" />
+          <label>url: </label>
+          <input v-model="site.url" />
+        </div>
+      </div>
+
+      <div v-if="!editMode">
+        <span
+          class="green-border quick-link"
+          v-for="(site, index) in userSettings.favoriteSites"
+          :key="site + index"
+        >
+          <button @click="launchFavorite(site.url)">
+            {{ site.name }}
+          </button>
+        </span>
+      </div>
+
   </div>
 </template>
 
@@ -21,6 +36,7 @@ export default {
   name: 'Header',
   data() {
     return {
+      editMode: false,
       userSettings,
     };
   },
