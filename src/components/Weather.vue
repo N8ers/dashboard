@@ -24,6 +24,7 @@
           </div>
           <div class="forcast-column align-right">
             <span>{{ day.hi }}&#176;F</span>
+            <span> | </span>
             <span>{{ day.lo }}&#176;F</span>
           </div>
         </div>
@@ -101,7 +102,6 @@ export default {
 <style>
 .weather-wrapper {
   width: 300px;
-  margin: 0 auto;
 }
 
 .current {
