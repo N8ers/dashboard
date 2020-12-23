@@ -8,12 +8,10 @@
     }
   },
   "favoriteSites": [
-    { "name": "youtube", "url": "https://www.youtube.com/" },
-    { "name": "youtube", "url": "https://www.youtube.com/" },
-    { "name": "youtube", "url": "https://www.youtube.com/" },
-    { "name": "youtube", "url": "https://www.youtube.com/" },
-    { "name": "youtube", "url": "https://www.youtube.com/" },
-    { "name": "youtube", "url": "https://www.youtube.com/" }
+    { "name": "gmail", "url": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" },
+    { "name": "npr", "url": "https://www.npr.org/" },
+    { "name": "reddit", "url": "https://www.reddit.com/" },
+    { "name": "trello", "url": "https://trello.com/b/8eP70Sbi/todo" }
   ],
   "todo": [
     { "name": "walk turtle", "completed": false },
