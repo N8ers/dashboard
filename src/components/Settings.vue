@@ -4,7 +4,7 @@
       <button>Back</button>
     </router-link>
 
-    <button>LogOut</button>
+    <button @click="logOutUser">LogOut</button>
     <br />
 
     <button @click="saveChanges">update</button>
@@ -48,6 +48,9 @@ export default {
     },
     saveChanges() {
       this.$store.dispatch('updateLocation', this.updatedLocation);
+    },
+    logOutUser() {
+      this.$router.replace('welcome');
     },
   },
   computed: {
