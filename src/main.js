@@ -1,9 +1,23 @@
 import Vue from 'vue';
+import * as firebase from 'firebase/app';
+
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
 Vue.config.productionTip = false;
+
+const firebaseConfig = {
+  apiKey: process.env.VUE_APP_FIREBASE_KEY,
+  authDomain: process.env.VUE_APP_FIREBASE_AUTHDOMAIN,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.VUE_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGEINGSENDERID,
+  appId: process.env.VUE_APP_FIREBASE_APPID,
+  measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENTID,
+};
+
+firebase.default.initializeApp(firebaseConfig);
 
 window.checkAndAttachMapScript = (callback) => {
   if (window.google) {
