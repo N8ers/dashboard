@@ -20,7 +20,6 @@ const firebaseConfig = {
 firebase.default.initializeApp(firebaseConfig);
 
 firebase.default.auth().onAuthStateChanged((result) => {
-  console.log('result ', result);
   if (result) {
     const userData = {
       email: result.email,

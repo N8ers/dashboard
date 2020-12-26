@@ -65,11 +65,10 @@ export default {
       // this.$store.dispatch('updateUser', updatedUser);
     },
     updateDisplayName() {
-      console.log('component - triggering dispatch ', this.displayName);
       this.$store.dispatch('updateDisplayName', this.displayName);
     },
     logOutUser() {
-      this.$router.replace('welcome');
+      this.$store.dispatch('logout');
     },
   },
   computed: {

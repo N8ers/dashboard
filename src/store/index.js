@@ -38,6 +38,20 @@ export default new Vuex.Store({
       state.user.uid = user.uid;
       router.replace('settings');
     },
+    clearUserData(state) {
+      state.user = {
+        email: null,
+        uid: null,
+        displayName: null,
+      };
+      state.location = {
+        address: null,
+        lat: null,
+        lng: null,
+      };
+      state.favoriteSites = [];
+      state.todo = [];
+    },
     setTodos() {},
   },
   actions: {
@@ -95,6 +109,14 @@ export default new Vuex.Store({
             })
             .catch((err) => console.log('err ', err));
         });
+    },
+    logout() {
+      firebase.auth().signOut()
+        .then(() => {
+          this.commit('clearUserData');
+          router.replace('welcome');
+        })
+        .catch((err) => console.log('error: ', err));
     },
     getTodos() {},
   },
