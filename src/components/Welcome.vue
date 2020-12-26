@@ -16,6 +16,12 @@
       <input type="password" v-model="creatingUser.password" />
       <button @click='createUser'>Signup!</button>
     </fieldset>
+    <fieldset>
+      <div>forget your passowrd?</div>
+      <label>email</label>
+      <input type="email" v-model="recovery.email" />
+      <button @click='recoverPassword'>send email to recover your password!</button>
+    </fieldset>
   </div>
 </template>
 
@@ -27,21 +33,26 @@ export default {
     return {
       returningUser: {
         email: 'nathanraysheryak@gmail.com',
-        password: 'test-123-asfab9972',
+        password: 'newPassword123',
       },
       creatingUser: {
         email: 'nathanraysheryak@gmail.com',
-        password: 'test-123-asfab9972',
+        password: 'newPassword123',
+      },
+      recovery: {
+        email: 'nathanraysheryak@gmail.com',
       },
     };
   },
   methods: {
     createUser() {
-      console.log('hello!');
       this.$store.dispatch('createUser', this.creatingUser);
     },
     loginUser() {
       this.$store.dispatch('login', this.returningUser);
+    },
+    recoverPassword() {
+      this.$store.dispatch('sendRecoverPasswordEmail', this.recovery.email);
     },
   },
   computed: {},

@@ -73,7 +73,7 @@ export default new Vuex.Store({
       const user = firebase.auth().currentUser;
       user.updateProfile({ displayName })
         .then(() => this.dispatch('getUser'))
-        .catch((err) => console.log('error ', err));
+        .catch((err) => console.log('error: ', err));
     },
     getFavoriteSites() {
       this.commit('setFavoriteSites', dummyEndpoint.favoriteSites);
@@ -120,12 +120,22 @@ export default new Vuex.Store({
     },
     verifyEmail() {
       const user = firebase.auth().currentUser;
-      console.log('user ', user);
       if (user && !user.emailVerified) {
         user.sendEmailVerification()
           .then((res) => console.log('res ', res))
           .catch((err) => console.log('err ', err));
       }
+    },
+    sendRecoverPasswordEmail(context, email) {
+      firebase.auth().sendPasswordResetEmail(email)
+        .then(() => console.log('sent'))
+        .catch((err) => console.log('error: ', err));
+    },
+    deleteAccount() {
+      const user = firebase.auth().currentUser;
+      user.delete()
+        .then(() => console.log('deleted'))
+        .catch((err) => console.log('error: ', err));
     },
     getTodos() {},
   },

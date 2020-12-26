@@ -13,6 +13,9 @@
     <button @click="sendEmailVerification">send email verification</button>
     <br />
 
+    <button @click="deleteAccount">delete account</button>
+    <br />
+
     {{ user }}
 
     <div v-if="!user.displayName">
@@ -75,6 +78,9 @@ export default {
     },
     sendEmailVerification() {
       this.$store.dispatch('verifyEmail');
+    },
+    deleteAccount() {
+      this.$store.dispatch('deleteAccount');
     },
   },
   computed: {
