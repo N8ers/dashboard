@@ -41,15 +41,24 @@ export default new Vuex.Store({
     setTodos() {},
   },
   actions: {
-    getUser() {},
+    getUser() {
+      const user = firebase.auth().currentUser;
+      if (user) {
+        const userData = {
+          email: user.email,
+          uid: user.uid,
+          displayName: user.displayName,
+        };
+        this.commit('setUser', userData);
+      }
+    },
     updateLocation(context, location) {
       this.commit('setLocation', location);
     },
     updateDisplayName(context, displayName) {
-      console.log('actions updateDisplayName ', displayName);
       const user = firebase.auth().currentUser;
       user.updateProfile({ displayName })
-        .then((res) => console.log('success ', res))
+        .then(() => this.dispatch('getUser'))
         .catch((err) => console.log('error ', err));
     },
     getFavoriteSites() {
@@ -68,9 +77,7 @@ export default new Vuex.Store({
           };
           this.commit('setSignUp', user);
         })
-        .catch((error) => {
-          console.log('error ', error);
-        });
+        .catch((err) => console.log('error ', err));
     },
     login(context, user) {
       // set firebase auth to persist
@@ -79,7 +86,6 @@ export default new Vuex.Store({
           // actually login user
           firebase.auth().signInWithEmailAndPassword(user.email, user.password)
             .then((result) => {
-              console.log('result ', result);
               const userData = {
                 email: result.user.email,
                 uid: result.user.uid,
