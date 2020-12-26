@@ -10,9 +10,21 @@
     <button @click="saveChanges">update</button>
     <br />
 
+    {{ user }}
+
+    <div v-if="!user.username">
+      continue setting up profile by:
+      <ul>
+        <li>adding a user name</li>
+        <li>setting your location for weather data (don't worry thats all we use it for)</li>
+      </ul>
+    </div>
+
     <fieldset>
       <label>User name:</label>
-      <input type="text" />
+      <input type="text" v-model="username" />
+      <button @click="updateUsername">update username</button>
+
       <label>Location:</label>
       <input
         type="text"
@@ -31,6 +43,7 @@ export default {
   name: 'Settings',
   data() {
     return {
+      username: null,
       updatedLocation: null,
     };
   },
@@ -47,7 +60,12 @@ export default {
       });
     },
     saveChanges() {
-      this.$store.dispatch('updateLocation', this.updatedLocation);
+      // this.$store.dispatch('updateLocation', this.updatedLocation);
+      const updatedUser = { username: this.username, location: this.updatedLocation };
+      this.$store.dispatch('updateUser', updatedUser);
+    },
+    updateUsername() {
+      this.$store.dispatch('updateUsername', this.username);
     },
     logOutUser() {
       this.$router.replace('welcome');
@@ -55,7 +73,10 @@ export default {
   },
   computed: {
     location() {
-      return _clonedeep(this.$store.state.user.location);
+      return _clonedeep(this.$store.state.location);
+    },
+    user() {
+      return this.$store.state.user;
     },
   },
   mounted() {
