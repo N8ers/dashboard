@@ -19,6 +19,18 @@ const firebaseConfig = {
 
 firebase.default.initializeApp(firebaseConfig);
 
+firebase.default.auth().onAuthStateChanged((result) => {
+  console.log('result ', result);
+  if (result) {
+    const userData = {
+      email: result.email,
+      uid: result.uid,
+      displayName: result.displayName,
+    };
+    store.commit('setUser', userData);
+  }
+});
+
 window.checkAndAttachMapScript = (callback) => {
   if (window.google) {
     callback();

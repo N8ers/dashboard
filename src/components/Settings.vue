@@ -12,7 +12,7 @@
 
     {{ user }}
 
-    <div v-if="!user.username">
+    <div v-if="!user.displayName">
       continue setting up profile by:
       <ul>
         <li>adding a user name</li>
@@ -22,8 +22,8 @@
 
     <fieldset>
       <label>User name:</label>
-      <input type="text" v-model="username" />
-      <button @click="updateUsername">update username</button>
+      <input type="text" v-model="displayName" />
+      <button @click="updateDisplayName">update display name</button>
 
       <label>Location:</label>
       <input
@@ -43,7 +43,7 @@ export default {
   name: 'Settings',
   data() {
     return {
-      username: null,
+      displayName: null,
       updatedLocation: null,
     };
   },
@@ -61,11 +61,12 @@ export default {
     },
     saveChanges() {
       // this.$store.dispatch('updateLocation', this.updatedLocation);
-      const updatedUser = { username: this.username, location: this.updatedLocation };
-      this.$store.dispatch('updateUser', updatedUser);
+      // const updatedUser = { displayName: this.displayName, location: this.updatedLocation };
+      // this.$store.dispatch('updateUser', updatedUser);
     },
-    updateUsername() {
-      this.$store.dispatch('updateUsername', this.username);
+    updateDisplayName() {
+      console.log('component - triggering dispatch ', this.displayName);
+      this.$store.dispatch('updateDisplayName', this.displayName);
     },
     logOutUser() {
       this.$router.replace('welcome');

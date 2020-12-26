@@ -11,7 +11,7 @@ export default new Vuex.Store({
     user: {
       email: null,
       uid: null,
-      username: null,
+      displayName: null,
     },
     location: {
       address: null,
@@ -24,7 +24,7 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, payload) {
       state.user = payload;
-      router.replace('settings');
+      // router.replace('settings');
     },
     setLocation(state, payload) {
       state.user.location = payload;
@@ -45,9 +45,10 @@ export default new Vuex.Store({
     updateLocation(context, location) {
       this.commit('setLocation', location);
     },
-    updateUsername(context, username) {
+    updateDisplayName(context, displayName) {
+      console.log('actions updateDisplayName ', displayName);
       const user = firebase.auth().currentUser;
-      user.updateProfile({ displayName: username })
+      user.updateProfile({ displayName })
         .then((res) => console.log('success ', res))
         .catch((err) => console.log('error ', err));
     },
@@ -72,17 +73,22 @@ export default new Vuex.Store({
         });
     },
     login(context, user) {
-      firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-        .then((result) => {
-          console.log('result ', result);
-          const userData = {
-            email: result.user.email,
-            uid: result.user.uid,
-            displayName: result.user.displayName,
-          };
-          this.commit('setUser', userData);
-        })
-        .catch((err) => console.log('err ', err));
+      // set firebase auth to persist
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+        .then(() => {
+          // actually login user
+          firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+            .then((result) => {
+              console.log('result ', result);
+              const userData = {
+                email: result.user.email,
+                uid: result.user.uid,
+                displayName: result.user.displayName,
+              };
+              this.commit('setUser', userData);
+            })
+            .catch((err) => console.log('err ', err));
+        });
     },
     getTodos() {},
   },
