@@ -10,6 +10,9 @@
     <button @click="saveChanges">update</button>
     <br />
 
+    <button @click="sendEmailVerification">send email verification</button>
+    <br />
+
     {{ user }}
 
     <div v-if="!user.displayName">
@@ -69,6 +72,9 @@ export default {
     },
     logOutUser() {
       this.$store.dispatch('logout');
+    },
+    sendEmailVerification() {
+      this.$store.dispatch('verifyEmail');
     },
   },
   computed: {

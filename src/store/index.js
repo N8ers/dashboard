@@ -118,6 +118,15 @@ export default new Vuex.Store({
         })
         .catch((err) => console.log('error: ', err));
     },
+    verifyEmail() {
+      const user = firebase.auth().currentUser;
+      console.log('user ', user);
+      if (user && !user.emailVerified) {
+        user.sendEmailVerification()
+          .then((res) => console.log('res ', res))
+          .catch((err) => console.log('err ', err));
+      }
+    },
     getTodos() {},
   },
   modules: {
