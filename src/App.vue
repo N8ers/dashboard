@@ -10,9 +10,7 @@
 
 export default {
   components: {},
-  created() {
-    this.$store.dispatch('getUser');
-  },
+  created() {},
 };
 </script>
 

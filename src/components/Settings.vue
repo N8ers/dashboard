@@ -71,16 +71,16 @@ export default {
       // this.$store.dispatch('updateUser', updatedUser);
     },
     updateDisplayName() {
-      this.$store.dispatch('updateDisplayName', this.displayName);
+      this.$store.dispatch('auth/updateDisplayName', this.displayName);
     },
     logOutUser() {
-      this.$store.dispatch('logout');
+      this.$store.dispatch('auth/logout');
     },
     sendEmailVerification() {
-      this.$store.dispatch('verifyEmail');
+      this.$store.dispatch('auth/verifyEmail');
     },
     deleteAccount() {
-      this.$store.dispatch('deleteAccount');
+      this.$store.dispatch('auth/deleteAccount');
     },
   },
   computed: {
@@ -88,12 +88,11 @@ export default {
       return _clonedeep(this.$store.state.location);
     },
     user() {
-      return this.$store.state.user;
+      return this.$store.state.auth.user;
     },
   },
   mounted() {
     window.checkAndAttachMapScript(this.initLocationSearch);
-    this.$store.dispatch('getUser');
   },
 };
 </script>

@@ -26,7 +26,7 @@ firebase.default.auth().onAuthStateChanged((result) => {
       uid: result.uid,
       displayName: result.displayName,
     };
-    store.commit('setUser', userData);
+    store.commit('auth/setUser', userData);
   }
 });
 
