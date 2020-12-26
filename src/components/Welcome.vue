@@ -33,11 +33,11 @@ export default {
     return {
       returningUser: {
         email: 'nathanraysheryak@gmail.com',
-        password: 'newPassword123',
+        password: 'newPassword234',
       },
       creatingUser: {
         email: 'nathanraysheryak@gmail.com',
-        password: 'newPassword123',
+        password: 'newPassword234',
       },
       recovery: {
         email: 'nathanraysheryak@gmail.com',
@@ -46,13 +46,13 @@ export default {
   },
   methods: {
     createUser() {
-      this.$store.dispatch('createUser', this.creatingUser);
+      this.$store.dispatch('auth/createUser', this.creatingUser);
     },
     loginUser() {
-      this.$store.dispatch('login', this.returningUser);
+      this.$store.dispatch('auth/login', this.returningUser);
     },
     recoverPassword() {
-      this.$store.dispatch('sendRecoverPasswordEmail', this.recovery.email);
+      this.$store.dispatch('auth/sendRecoverPasswordEmail', this.recovery.email);
     },
   },
   computed: {},
