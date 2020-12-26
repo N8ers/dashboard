@@ -38,6 +38,12 @@
         :placeholder="location.address"
         v-model="location.address"
       />
+      <button @click="setNewLocation">Save location</button>
+    </fieldset>
+
+    <hr />
+    <fieldset>
+      <button @click="setTestData">reset test data</button>
     </fieldset>
   </div>
 </template>
@@ -51,6 +57,9 @@ export default {
     return {
       displayName: null,
       updatedLocation: null,
+      testData: {
+        todoName: null,
+      },
     };
   },
   methods: {
@@ -81,6 +90,13 @@ export default {
     },
     deleteAccount() {
       this.$store.dispatch('auth/deleteAccount');
+    },
+    setTestData() {
+      this.$store.dispatch('db/setDummyData');
+    },
+    setNewLocation() {
+      console.log('setNewLocation dispatch ', this.updatedLocation);
+      this.$store.dispatch('db/setNewLocation', this.updatedLocation);
     },
   },
   computed: {

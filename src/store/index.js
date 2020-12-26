@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import dummyEndpoint from '../../userSettings.json';
 import auth from './modules/auth';
+import db from './modules/db';
 
 Vue.use(Vuex);
 
@@ -39,5 +40,6 @@ export default new Vuex.Store({
   },
   modules: {
     auth,
+    db,
   },
 });
