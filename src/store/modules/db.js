@@ -17,10 +17,9 @@ export default ({
     quickLinks: [],
   },
   mutations: {
-    setUserData(state, { location, todo, quickLinks }) {
-      console.log('setUserData mutation ', location, todo, quickLinks);
+    setUserData(state, { location, todos, quickLinks }) {
       state.location = location;
-      state.todos = todo;
+      state.todos = todos;
       state.quickLinks = quickLinks;
     },
   },
@@ -58,18 +57,21 @@ export default ({
       this.dispatch('db/getUserData');
     },
     updateQuickLinks(context, quickLinks) {
-      console.log('updateQuickLinks db.js ', quickLinks);
       const user = firebase.auth().currentUser;
       firebase.database().ref(`users/${user.uid}`).child('quickLinks').set(quickLinks);
+      this.dispatch('db/getUserData');
+    },
+    updateTodos(context, todos) {
+      const user = firebase.auth().currentUser;
+      firebase.database().ref(`users/${user.uid}`).child('todos').set(todos);
       this.dispatch('db/getUserData');
     },
     getUserData() {
       const user = firebase.auth().currentUser;
       firebase.database().ref(`users/${user.uid}`).once('value')
         .then((snapshot) => {
-          const { location, todo, quickLinks } = snapshot.val();
-          console.log('getUserData action ', location, todo, quickLinks);
-          this.commit('db/setUserData', { location, todo, quickLinks });
+          const { location, todos, quickLinks } = snapshot.val();
+          this.commit('db/setUserData', { location, todos, quickLinks });
         })
         .then((err) => console.log('err getUserData ', err));
     },

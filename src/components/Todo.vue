@@ -2,19 +2,24 @@
   <div class="todo-wrapper green-border">
 
     <h3 class="m-10">ToDo</h3>
-    <button v-if="editMode" @click="editMode = !editMode">Save</button>
+    <button v-if="editMode" @click="updateTodos">Save</button>
     <button v-if="!editMode" @click="editMode = !editMode">Edit</button>
 
-    <div v-for="(todo, index) in userSettings.todo" :key="todo.index" class="todo">
+    <div v-for="(todo, index) in clonedTodo" :key="todo.index" class="todo">
       <div :class="index % 2 === 0 ? 'even-todo': 'odd-todo'" class="row">
-        <input type="checkbox" v-model="todo.completed" />
+        <input
+          v-if="!editMode"
+          type="checkbox"
+          v-model="todo.completed"
+          @change="updateTodos"
+        />
         <input v-if="editMode" class="ml-10" type="text" v-model="todo.name" />
         <span v-if="!editMode" class="ml-10">{{ todo.name }}</span>
         <button v-if="editMode" @click="removeTodo(index)">remove</button>
       </div>
     </div>
 
-    <div>
+    <div v-if="editMode">
       <input type="text" v-model="newTodo" />
       <button @click="addTodo">add</button>
     </div>
@@ -23,24 +28,40 @@
 </template>
 
 <script>
-import userSettings from '../../userSettings.json';
+import _clonedeep from 'lodash.clonedeep';
 
 export default {
   name: 'Todo',
   data() {
     return {
-      userSettings,
       editMode: false,
       newTodo: null,
+      clonedTodo: [],
     };
   },
   methods: {
     addTodo() {
-      userSettings.todo.push({ completed: false, name: this.newTodo });
+      const newTodo = { name: _clonedeep(this.newTodo), completed: false };
+      this.clonedTodo.push(newTodo);
       this.newTodo = null;
     },
     removeTodo(todoIndex) {
-      userSettings.todo.splice(todoIndex, 1);
+      this.clonedTodo.splice(todoIndex, 1);
+    },
+    setClonedTodos() {
+      this.clonedTodo = _clonedeep(this.$store.state.db.todos);
+    },
+    updateTodos() {
+      this.editMode = false;
+      this.$store.dispatch('db/updateTodos', this.clonedTodo);
+    },
+  },
+  created() {
+    this.setClonedTodos();
+  },
+  watch: {
+    '$store.state.db.todos': function () {
+      this.setClonedTodos();
     },
   },
 };

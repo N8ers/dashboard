@@ -57,7 +57,6 @@ export default {
     addQuickLink() {
       const newLink = _clonedeep(this.newLink);
       this.clonedQuickLinks.push(newLink);
-      console.log('pushed ', this.clonedQuickLinks);
       this.newLink.name = null;
       this.newLink.url = null;
     },
@@ -76,6 +75,9 @@ export default {
     },
   },
   computed: {},
+  created() {
+    this.setClonedQuickLinks();
+  },
   watch: {
     '$store.state.db.quickLinks': function () {
       this.setClonedQuickLinks();

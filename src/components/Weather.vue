@@ -57,6 +57,7 @@ export default {
       const { lat, lng } = this.location;
       const response = await axios.get(`${corsPrefix}http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly&appid=${apiKey}&units=${units}`);
       this.weather = response.data;
+      console.log('getWeather response ', response.data);
     },
     dayClass(dayIndex) {
       const day = dayIndex ? format(addDays(new Date(), dayIndex), 'iiii') : 'Today';
