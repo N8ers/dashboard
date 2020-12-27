@@ -42,7 +42,7 @@
 import _clonedeep from 'lodash.clonedeep';
 
 export default {
-  name: 'Header',
+  name: 'Favorite',
   data() {
     return {
       editMode: false,

@@ -1,5 +1,5 @@
 <template>
-  <div class="header-wrapper green-border">
+  <div class="green-border">
     <h1 class="greeting">Hey {{ displayName }}</h1>
     <h3 class="date">happy {{ date.day }}, {{ date.date }}!</h3>
   </div>
@@ -31,11 +31,6 @@ export default {
 </script>
 
 <style>
-.header-wrapper {
-  text-align: left;
-  margin: 20px;
-  border: 1px solid black;
-}
 
 .greeting {
   font-size: 64px;

@@ -56,6 +56,7 @@ export default {
       this.$store.dispatch('db/updateTodos', this.clonedTodo);
     },
   },
+  computed: { },
   created() {
     this.setClonedTodos();
   },

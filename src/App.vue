@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div class="green">hi, green #19e0a3</div>
-    <div class="gray green-background">hey, gray #454545</div>
+    <!-- <div class="green">hi, green #19e0a3</div> -->
+    <!-- <div class="gray green-background">hey, gray #454545</div> -->
     <router-view />
   </div>
 </template>
@@ -21,8 +21,8 @@ export default {
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   /* color: #2c3e50; */
   color: white;
