@@ -18,7 +18,7 @@ const firebaseConfig = {
 };
 
 firebase.default.initializeApp(firebaseConfig);
-
+firebase.default.database();
 firebase.default.auth().onAuthStateChanged((result) => {
   if (result) {
     const userData = {
@@ -27,6 +27,7 @@ firebase.default.auth().onAuthStateChanged((result) => {
       displayName: result.displayName,
     };
     store.commit('auth/setUser', userData);
+    store.dispatch('db/getUserData');
   }
 });
 
