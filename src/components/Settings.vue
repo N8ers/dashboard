@@ -17,6 +17,8 @@
     <br />
 
     {{ user }}
+    <hr />
+    {{ location }}
 
     <div v-if="!user.displayName">
       continue setting up profile by:
@@ -95,13 +97,12 @@ export default {
       this.$store.dispatch('db/setDummyData');
     },
     setNewLocation() {
-      console.log('setNewLocation dispatch ', this.updatedLocation);
       this.$store.dispatch('db/setNewLocation', this.updatedLocation);
     },
   },
   computed: {
     location() {
-      return _clonedeep(this.$store.state.location);
+      return _clonedeep(this.$store.state.db.location);
     },
     user() {
       return this.$store.state.auth.user;

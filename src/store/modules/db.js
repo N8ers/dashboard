@@ -17,6 +17,7 @@ export default ({
   },
   mutations: {
     setUserData(state, { location, todos }) {
+      console.log('setUserData mutation ', location, todos);
       state.location = location;
       state.todos = todos;
     },
@@ -44,12 +45,14 @@ export default ({
     setNewLocation(context, location) {
       const user = firebase.auth().currentUser;
       firebase.database().ref(`users/${user.uid}`).child('location').set(location);
+      this.dispatch('db/getUserData');
     },
     getUserData() {
       const user = firebase.auth().currentUser;
       firebase.database().ref(`users/${user.uid}`).once('value')
         .then((snapshot) => {
           const { location, todo } = snapshot.val();
+          console.log('getUserData action ', location, todo);
           this.commit('db/setUserData', { location, todo });
         })
         .then((err) => console.log('err ', err));
