@@ -14,12 +14,14 @@ export default ({
       lng: null,
     },
     todos: [],
+    quickLinks: [],
   },
   mutations: {
-    setUserData(state, { location, todos }) {
-      console.log('setUserData mutation ', location, todos);
+    setUserData(state, { location, todo, quickLinks }) {
+      console.log('setUserData mutation ', location, todo, quickLinks);
       state.location = location;
-      state.todos = todos;
+      state.todos = todo;
+      state.quickLinks = quickLinks;
     },
   },
   actions: {
@@ -31,15 +33,23 @@ export default ({
         { name: 'throw rock', completed: true },
       ];
 
+      const quickLinks = [
+        { name: 'npr', url: 'https://www.npr.org/' },
+        { name: 'reddit', url: 'https://www.reddit.com/' },
+        { name: 'github', url: 'https://github.com/N8ers' },
+        { name: 'trello', url: 'https://trello.com/b/8eP70Sbi/todo' },
+      ];
+
       const location = {
-        address: '81237',
-        lat: '23.876',
-        lng: '65.876',
+        address: 'Seattle, WA, USA',
+        lat: '47.6062095',
+        lng: '47.6062095',
       };
 
       firebase.database().ref(`users/${user.uid}`).set({
         todo: todos,
         location,
+        quickLinks,
       });
     },
     setNewLocation(context, location) {
@@ -47,15 +57,21 @@ export default ({
       firebase.database().ref(`users/${user.uid}`).child('location').set(location);
       this.dispatch('db/getUserData');
     },
+    updateQuickLinks(context, quickLinks) {
+      console.log('updateQuickLinks db.js ', quickLinks);
+      const user = firebase.auth().currentUser;
+      firebase.database().ref(`users/${user.uid}`).child('quickLinks').set(quickLinks);
+      this.dispatch('db/getUserData');
+    },
     getUserData() {
       const user = firebase.auth().currentUser;
       firebase.database().ref(`users/${user.uid}`).once('value')
         .then((snapshot) => {
-          const { location, todo } = snapshot.val();
-          console.log('getUserData action ', location, todo);
-          this.commit('db/setUserData', { location, todo });
+          const { location, todo, quickLinks } = snapshot.val();
+          console.log('getUserData action ', location, todo, quickLinks);
+          this.commit('db/setUserData', { location, todo, quickLinks });
         })
-        .then((err) => console.log('err ', err));
+        .then((err) => console.log('err getUserData ', err));
     },
   },
 });

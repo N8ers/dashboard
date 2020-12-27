@@ -88,7 +88,7 @@ export default {
       ];
     },
     location() {
-      return this.$store.state.user.location;
+      return this.$store.state.db.location;
     },
   },
   created() {
