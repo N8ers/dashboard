@@ -1,6 +1,6 @@
 <template>
-  <div class="green-border">
-    <h1>Welcome to dashboard!</h1>
+  <div>
+    <h1 class="welcome-header">Welcome to dashboard!</h1>
 
     <fieldset v-if="showSignIn && !showRecoverEmail" @submit.prevent="loginUser" class="auth-card">
       <input
@@ -100,16 +100,23 @@ export default {
 </script>
 
 <style>
+
+.welcome-header {
+  padding-top: 100px;
+
+}
+
 .auth-card {
   margin: 0 auto;
-  border: 1px solid black;
-  width: 500px;
+  border: none;
+  width: 350px;
 }
 
 .auth-input {
-  margin: 10px auto;
+  margin: 15px auto;
   display: block;
   width: 300px;
+  padding: 6px;
 }
 
 .auth-button {

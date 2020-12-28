@@ -19,6 +19,10 @@ export default {
   margin: 0;
 }
 
+fieldset {
+  border: none;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   /* -webkit-font-smoothing: antialiased; */
@@ -75,6 +79,22 @@ export default {
   margin-bottom: 10px;
 }
 
+.mt-20 {
+  margin-top: 20px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.pt-10 {
+  padding-top: 10px;
+}
+
+.pt-10 {
+  padding: 10px;
+}
+
 .align-left {
   text-align: left;
 }
@@ -118,6 +138,18 @@ export default {
 
 .cursor-pointer:hover {
   cursor: pointer;
+}
+
+.form-input {
+  margin: 15px auto;
+  width: 250px;
+  padding: 6px;
+}
+
+.form-btn {
+  margin: 5px;
+  width: 172px;
+  height: 34px;
 }
 
 </style>

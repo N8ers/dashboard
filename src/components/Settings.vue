@@ -7,27 +7,33 @@
 
     <fieldset>
       <div class="mb-10">
-        <input type="text" v-model="user.displayName" />
-        <button @click="updateDisplayName" class="btn-secondary">Update display name</button>
+        <input type="text" v-model="user.displayName" class="form-input" />
+        <button @click="updateDisplayName" class="btn-secondary form-btn">
+          Update display name
+        </button>
       </div>
 
       <div>
         <input
           type="text"
           ref="search"
+          class="form-input"
           :placeholder="location.address"
           v-model="location.address"
         />
-        <button @click="setNewLocation" class="btn-secondary">Update location</button>
+        <button @click="setNewLocation" class="btn-secondary form-btn">Update location</button>
       </div>
     </fieldset>
 
+    <button @click="deleteAccount" class="btn-secondary">delete account?</button>
+
+    <br />
+    <br />
+    <br />
     <fieldset>
       <button @click="setTestData">reset test data</button>
       <button @click="sendEmailVerification">send email verification</button>
     </fieldset>
-
-    <button @click="deleteAccount">delete account?</button>
   </div>
 </template>
 
