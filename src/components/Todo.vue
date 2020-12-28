@@ -2,26 +2,27 @@
   <div class="todo-wrapper green-border">
 
     <h3 class="m-10">ToDo</h3>
-    <button v-if="editMode" @click="updateTodos">Save</button>
-    <button v-if="!editMode" @click="editMode = !editMode">Edit</button>
+    <button v-if="editMode" @click="updateTodos" class="btn-primary mb-10">Save</button>
+    <button v-if="!editMode" @click="editMode = !editMode" class="btn-primary mb-10">Edit</button>
 
     <div v-for="(todo, index) in clonedTodo" :key="todo.index" class="todo">
       <div :class="index % 2 === 0 ? 'even-todo': 'odd-todo'" class="row">
         <input
           v-if="!editMode"
           type="checkbox"
+          class="cursor-pointer"
           v-model="todo.completed"
           @change="updateTodos"
         />
         <input v-if="editMode" class="ml-10" type="text" v-model="todo.name" />
         <span v-if="!editMode" class="ml-10">{{ todo.name }}</span>
-        <button v-if="editMode" @click="removeTodo(index)">remove</button>
+        <button v-if="editMode" @click="removeTodo(index)" class="btn-secondary">remove</button>
       </div>
     </div>
 
     <div v-if="editMode">
       <input type="text" v-model="newTodo" />
-      <button @click="addTodo">add</button>
+      <button @click="addTodo" class="btn-secondary">add</button>
     </div>
 
   </div>

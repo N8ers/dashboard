@@ -3,7 +3,7 @@
     <router-link to="/settings">
       <img
         src="https://www.flaticon.com/svg/static/icons/svg/17/17789.svg"
-        class="gear-icon"
+        class="gear-icon cursor-pointer"
       />
     </router-link>
 

@@ -67,6 +67,10 @@ export default {
   margin: 10px;
 }
 
+.mt-10 {
+  margin-top: 10px;
+}
+
 .mb-10 {
   margin-bottom: 10px;
 }
@@ -88,13 +92,32 @@ export default {
   margin: 20px;
 }
 
+.btn-primary {
+  background-color: #42b983;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.btn-secondary {
+  background-color: #2c3e50;
+  color: #42b983;
+  border: none;
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
 .gear-icon {
   height: 20px;
   width: 20px;
   float: right;
 }
 
-.gear-icon:hover {
+.cursor-pointer:hover {
   cursor: pointer;
 }
+
 </style>

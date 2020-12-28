@@ -1,52 +1,33 @@
 <template>
   <div>
-    <router-link to="/">
-      <button>Back</button>
-    </router-link>
-
-    <button @click="logOutUser">LogOut</button>
-    <br />
-
-    <button @click="saveChanges">update</button>
-    <br />
-
-    <button @click="sendEmailVerification">send email verification</button>
-    <br />
-
-    <button @click="deleteAccount">delete account</button>
-    <br />
-
-    {{ user }}
-    <hr />
-    {{ location }}
-
-    <div v-if="!user.displayName">
-      continue setting up profile by:
-      <ul>
-        <li>adding a user name</li>
-        <li>setting your location for weather data (don't worry thats all we use it for)</li>
-      </ul>
+    <div>
+      <router-link to="/"><button class="btn-secondary mt-10">Back</button></router-link>
+      <button @click="logOutUser" class="btn-secondary ml-10 mt-10">LogOut</button>
     </div>
 
     <fieldset>
-      <label>User name:</label>
-      <input type="text" v-model="displayName" />
-      <button @click="updateDisplayName">update display name</button>
+      <div class="mb-10">
+        <input type="text" v-model="user.displayName" />
+        <button @click="updateDisplayName" class="btn-secondary">Update display name</button>
+      </div>
 
-      <label>Location:</label>
-      <input
-        type="text"
-        ref="search"
-        :placeholder="location.address"
-        v-model="location.address"
-      />
-      <button @click="setNewLocation">Save location</button>
+      <div>
+        <input
+          type="text"
+          ref="search"
+          :placeholder="location.address"
+          v-model="location.address"
+        />
+        <button @click="setNewLocation" class="btn-secondary">Update location</button>
+      </div>
     </fieldset>
 
-    <hr />
     <fieldset>
       <button @click="setTestData">reset test data</button>
+      <button @click="sendEmailVerification">send email verification</button>
     </fieldset>
+
+    <button @click="deleteAccount">delete account?</button>
   </div>
 </template>
 
@@ -76,11 +57,6 @@ export default {
         };
       });
     },
-    saveChanges() {
-      // this.$store.dispatch('updateLocation', this.updatedLocation);
-      // const updatedUser = { displayName: this.displayName, location: this.updatedLocation };
-      // this.$store.dispatch('updateUser', updatedUser);
-    },
     updateDisplayName() {
       this.$store.dispatch('auth/updateDisplayName', this.displayName);
     },
@@ -105,7 +81,7 @@ export default {
       return _clonedeep(this.$store.state.db.location);
     },
     user() {
-      return this.$store.state.auth.user;
+      return _clonedeep(this.$store.state.auth.user);
     },
   },
   mounted() {

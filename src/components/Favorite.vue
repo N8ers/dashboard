@@ -2,16 +2,16 @@
   <div class='favorite-wrapper green-border'>
       <h3 class="m-10">Quick Launch</h3>
 
-      <button v-if="editMode" @click="updateQuickLinks">Save</button>
-      <button v-if="!editMode" @click="editMode = !editMode">Edit</button>
+      <button v-if="editMode" @click="updateQuickLinks" class="btn-primary mb-10">Save</button>
+      <button v-if="!editMode" @click="editMode = !editMode" class="btn-primary mb-10">Edit</button>
 
-      <div v-if="editMode">
+      <div v-if="editMode" class="mb-10">
         <div v-for="(site, index) in clonedQuickLinks" :key="site + index" green-border>
           <label>name: </label>
           <input v-model="site.name" />
           <label>url: </label>
           <input v-model="site.url" />
-          <button @click="removeQuickLink(index)">X</button>
+          <button @click="removeQuickLink(index)" class="btn-secondary">X</button>
         </div>
         <div>
           <h3>add new quick link</h3>
@@ -19,7 +19,7 @@
           <input v-model="newLink.name" />
           <label>url: </label>
           <input v-model="newLink.url" />
-          <button @click="addQuickLink">Add Quick Link</button>
+          <button @click="addQuickLink" class="btn-secondary">Add Quick Link</button>
         </div>
       </div>
 
@@ -29,7 +29,7 @@
           v-for="(site, index) in clonedQuickLinks"
           :key="site + index"
         >
-          <button @click="launchFavorite(site.url)">
+          <button @click="launchFavorite(site.url)" class="btn-secondary">
             {{ site.name }}
           </button>
         </span>
