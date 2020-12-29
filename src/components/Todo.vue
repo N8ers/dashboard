@@ -2,8 +2,12 @@
   <div class="todo-wrapper green-border">
 
     <h3 class="m-10">ToDo</h3>
-    <button v-if="editMode" @click="updateTodos" class="btn-primary mb-10">Save</button>
-    <button v-if="!editMode" @click="editMode = !editMode" class="btn-primary mb-10">Edit</button>
+    <button v-if="editMode" @click="updateTodos" class="btn-primary mb-10">
+      <font-awesome-icon icon="save" class="cursor-pointer" />
+    </button>
+    <button v-if="!editMode" @click="editMode = !editMode" class="btn-primary mb-10">
+      <font-awesome-icon icon="edit" class="cursor-pointer" />
+    </button>
 
     <div v-for="(todo, index) in clonedTodo" :key="todo.index" class="todo">
       <div :class="index % 2 === 0 ? 'even-todo': 'odd-todo'" class="row">
@@ -20,13 +24,17 @@
           class="ml-10"
           :class="todo.completed && 'completed-todo'"
         >{{ todo.name }}</span>
-        <button v-if="editMode" @click="removeTodo(index)" class="btn-secondary">remove</button>
+        <button v-if="editMode" @click="removeTodo(index)" class="btn-secondary">
+          <font-awesome-icon icon="trash" class="cursor-pointer" />
+        </button>
       </div>
     </div>
 
     <div v-if="editMode">
       <input type="text" v-model="newTodo" />
-      <button @click="addTodo" class="btn-secondary">add</button>
+      <button @click="addTodo" class="btn-secondary">
+        <font-awesome-icon icon="plus" class="cursor-pointer" />
+      </button>
     </div>
 
   </div>

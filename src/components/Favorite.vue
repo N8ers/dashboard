@@ -2,8 +2,12 @@
   <div class='favorite-wrapper green-border'>
       <h3 class="m-10">Quick Launch</h3>
 
-      <button v-if="editMode" @click="updateQuickLinks" class="btn-primary mb-10">Save</button>
-      <button v-if="!editMode" @click="editMode = !editMode" class="btn-primary mb-10">Edit</button>
+      <button v-if="editMode" @click="updateQuickLinks" class="btn-primary mb-10">
+        <font-awesome-icon icon="save" class="cursor-pointer" />
+      </button>
+      <button v-if="!editMode" @click="editMode = !editMode" class="btn-primary mb-10">
+        <font-awesome-icon icon="edit" class="cursor-pointer" />
+      </button>
 
       <div v-if="editMode" class="mb-10">
         <div v-for="(site, index) in clonedQuickLinks" :key="site + index" green-border>
@@ -11,7 +15,9 @@
           <input v-model="site.name" />
           <label>url: </label>
           <input v-model="site.url" />
-          <button @click="removeQuickLink(index)" class="btn-secondary">X</button>
+          <button @click="removeQuickLink(index)" class="btn-secondary">
+            <font-awesome-icon icon="trash" class="cursor-pointer" />
+          </button>
         </div>
         <div>
           <h3>add new quick link</h3>
@@ -19,7 +25,9 @@
           <input v-model="newLink.name" />
           <label>url: </label>
           <input v-model="newLink.url" />
-          <button @click="addQuickLink" class="btn-secondary">Add Quick Link</button>
+          <button @click="addQuickLink" class="btn-secondary">
+            <font-awesome-icon icon="plus" class="cursor-pointer" />
+          </button>
         </div>
       </div>
 
