@@ -1,9 +1,9 @@
 <template>
   <div>
     <router-link to="/settings">
-      <img
-        src="https://www.flaticon.com/svg/static/icons/svg/17/17789.svg"
-        class="gear-icon cursor-pointer"
+      <font-awesome-icon
+        icon="cog"
+        class="gear-icon cursor-pointer btn-primary m-10"
       />
     </router-link>
 

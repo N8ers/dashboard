@@ -1,11 +1,17 @@
 import Vue from 'vue';
 import * as firebase from 'firebase/app';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCog, faSpinner, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
 Vue.config.productionTip = false;
+
+library.add(faCog, faSpinner, faSignOutAlt);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_KEY,

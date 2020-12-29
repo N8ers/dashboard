@@ -2,7 +2,13 @@
   <div>
     <div>
       <router-link to="/"><button class="btn-secondary mt-10">Back</button></router-link>
-      <button @click="logOutUser" class="btn-secondary ml-10 mt-10">LogOut</button>
+      <button @click="logOutUser" class="btn-secondary ml-10 mt-10">
+        LogOut
+        <font-awesome-icon
+          icon="sign-out-alt"
+          class="cursor-pointer"
+        />
+      </button>
     </div>
 
     <fieldset>
