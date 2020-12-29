@@ -18,6 +18,8 @@ export default ({
   mutations: {
     setUser(state, payload) {
       state.user = payload;
+      // router.replace('dashboard');
+
       // router.replace('settings');
       // const { currentUser } = firebase.auth();
       // console.log('currentUser ', currentUser);
@@ -46,6 +48,7 @@ export default ({
   actions: {
     getUser() {
       const user = firebase.auth().currentUser;
+      console.log('getUser fired ', user);
       if (user?.uid) {
         const userData = {
           email: user.email,
@@ -86,6 +89,7 @@ export default ({
                 displayName: result.user.displayName,
               };
               this.commit('auth/setUser', userData);
+              router.replace('/');
 
               // console.log('result ', result);
               // if (result?.user?.emailVerified) {

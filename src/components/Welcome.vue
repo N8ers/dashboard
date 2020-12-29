@@ -95,7 +95,6 @@ export default {
       this.$store.dispatch('auth/createUser', this.creatingUser);
     },
     loginUser() {
-      console.log('loginUser ', this.returningUser);
       this.$store.dispatch('auth/login', this.returningUser);
     },
     recoverPassword() {

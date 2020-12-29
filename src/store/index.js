@@ -38,7 +38,6 @@ export default new Vuex.Store({
     },
     getTodos() {},
     refreshData() {
-      console.log('refreshing data');
       this.dispatch('auth/getUser');
       this.dispatch('db/getUserData');
     },

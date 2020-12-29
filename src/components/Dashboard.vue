@@ -32,8 +32,5 @@ export default {
     Favorite,
   },
   methods: {},
-  created() {
-    this.$store.dispatch('refreshData');
-  },
 };
 </script>

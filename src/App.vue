@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!-- <div class="green">hi, green #19e0a3</div> -->
-    <!-- <div class="gray green-background">hey, gray #454545</div> -->
     <router-view />
   </div>
 </template>

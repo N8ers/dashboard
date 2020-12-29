@@ -68,6 +68,7 @@ export default ({
     },
     getUserData() {
       const user = firebase.auth().currentUser;
+      console.log('getUserData in db ', user);
       if (user) {
         firebase.database().ref(`users/${user.uid}`).once('value')
           .then((snapshot) => {
