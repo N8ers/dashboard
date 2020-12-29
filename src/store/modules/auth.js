@@ -13,16 +13,24 @@ export default ({
       uid: null,
       displayName: null,
     },
+    newUserConfirmationEmailSent: null,
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload;
       // router.replace('settings');
+      // const { currentUser } = firebase.auth();
+      // console.log('currentUser ', currentUser);
+      // if (!currentUser?.displayName) {
+      // router.replace('settings');
+      // } else {
+      // router.replace('dashboard');
+      // }
     },
     setSignUp(state, user) {
       state.user.email = user.email;
       state.user.uid = user.uid;
-      router.replace('settings');
+      // router.replace('settings');
     },
     clearUserData(state) {
       state.user = {
@@ -31,11 +39,14 @@ export default ({
         displayName: null,
       };
     },
+    newUserConfirmationEmailSent(state, bool) {
+      state.newUserConfirmationEmailSent = bool;
+    },
   },
   actions: {
     getUser() {
       const user = firebase.auth().currentUser;
-      if (user) {
+      if (user?.uid) {
         const userData = {
           email: user.email,
           uid: user.uid,
@@ -54,19 +65,19 @@ export default ({
       const { email, password } = newUser;
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
-          const user = {
-            email: result.email,
-            uid: result.user.uid,
-          };
-          this.commit('auth/setSignUp', user);
+          // const user = {
+          // email: result.email,
+          // uid: result.user.uid,
+          // };
+          // this.commit('auth/setSignUp', user);
+          this.dispatch('auth/verifyEmail', result);
+          this.commit('auth/newUserConfirmationEmailSent', true);
         })
         .catch((err) => console.log('error ', err));
     },
     login(context, user) {
-      // set firebase auth to persist
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(() => {
-          // actually login user
           firebase.auth().signInWithEmailAndPassword(user.email, user.password)
             .then((result) => {
               const userData = {
@@ -75,6 +86,27 @@ export default ({
                 displayName: result.user.displayName,
               };
               this.commit('auth/setUser', userData);
+
+              // console.log('result ', result);
+              // if (result?.user?.emailVerified) {
+              //   console.log('if');
+              //   this.commit('auth/newUserConfirmationEmailSent', true);
+              // } else {
+              //   console.log('else');
+              //   const userData = {
+              //     email: result.user.email,
+              //     uid: result.user.uid,
+              //     displayName: result.user.displayName,
+              //   };
+              //   this.commit('auth/setUser', userData);
+              //   const { currentUser } = firebase.auth();
+              //   console.log('currentUser ', currentUser);
+              //   if (!currentUser?.displayName) {
+              //     router.replace('settings');
+              //   } else {
+              //     router.replace('dashboard');
+              //   }
+              // }
             })
             .catch((err) => console.log('err ', err));
         });
@@ -87,8 +119,9 @@ export default ({
         })
         .catch((err) => console.log('error: ', err));
     },
-    verifyEmail() {
-      const user = firebase.auth().currentUser;
+    verifyEmail(user) {
+      console.log('user ', user);
+      // const user = firebase.auth().currentUser;
       if (user && !user.emailVerified) {
         user.sendEmailVerification()
           .then((res) => console.log('res ', res))

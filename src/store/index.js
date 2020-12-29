@@ -37,6 +37,11 @@ export default new Vuex.Store({
       this.commit('setFavoriteSites', sites);
     },
     getTodos() {},
+    refreshData() {
+      console.log('refreshing data');
+      this.dispatch('auth/getUser');
+      this.dispatch('db/getUserData');
+    },
   },
   modules: {
     auth,

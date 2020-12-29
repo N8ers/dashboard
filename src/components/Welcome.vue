@@ -2,50 +2,60 @@
   <div>
     <h1 class="welcome-header">Welcome to dashboard!</h1>
 
-    <fieldset v-if="showSignIn && !showRecoverEmail" @submit.prevent="loginUser" class="auth-card">
-      <input
-        type="email"
-        v-model="returningUser.email"
-        placeholder="email"
-        class="auth-input"
-      />
-      <input
-        type="password"
-        v-model="returningUser.password"
-        placeholder="password"
-        class="auth-input"
-      />
-      <button class="btn-primary">Login!</button>
-    </fieldset>
+    <form v-if="showSignIn && !showRecoverEmail" @submit.prevent="loginUser">
+      <fieldset class="auth-card">
+        <input
+          type="email"
+          v-model="returningUser.email"
+          placeholder="email"
+          class="auth-input"
+        />
+        <input
+          type="password"
+          v-model="returningUser.password"
+          placeholder="password"
+          class="auth-input"
+        />
+        <button class="btn-primary" type="submit">Login!</button>
+      </fieldset>
+    </form>
 
-    <fieldset
-      v-if="!showSignIn && !showRecoverEmail"
-      @submit.prevent="createUser"
-      class="auth-card"
-    >
-      <input
-        type="email"
-        v-model="creatingUser.email"
-        placeholder="email"
-        class="auth-input"
-      />
-      <input
-        type="password"
-        v-model="creatingUser.password"
-        placeholder="password"
-        class="auth-input"
-      />
-      <button class="btn-primary">Signup!</button>
-    </fieldset>
+    <form v-if="!showSignIn && !showRecoverEmail" @submit.prevent="createUser">
+      <fieldset class="auth-card">
+        <input
+          type="email"
+          v-model="creatingUser.email"
+          placeholder="email"
+          class="auth-input"
+        />
+        <input
+          type="password"
+          v-model="creatingUser.password"
+          placeholder="password"
+          class="auth-input"
+        />
+        <button class="btn-primary">Signup!</button>
+      </fieldset>
+    </form>
 
-    <fieldset v-if="showRecoverEmail" class="auth-card">
-      <input type="email" v-model="recovery.email" placeholder="email" class="auth-input" />
-      <button
-        @click='recoverPassword'
-        class="btn-primary"
-      >send email to recover your password!</button>
-      <div v-if="emailRecoverySent">An email will be sent shortly, check your inbox</div>
-    </fieldset>
+    <form v-if="showRecoverEmail">
+      <fieldset class="auth-card">
+        <input type="email" v-model="recovery.email" placeholder="email" class="auth-input" />
+        <button
+          @click='recoverPassword'
+          class="btn-primary"
+        >send email to recover your password!</button>
+        <div v-if="emailRecoverySent">An email will be sent shortly, check your inbox</div>
+      </fieldset>
+    </form>
+
+    <div v-if="!newUserConfirmationEmailSent">
+      <h3>We sent you a confirmation email!</h3>
+      <h4>Once you confirm your email, you can sign in.</h4>
+      <h5>If you need the email sent again,
+        <span class="cursor-pointer green" @click="verifyEmail">click here!</span>
+      </h5>
+    </div>
 
     <button @click="toggleSignInSignUp" class="auth-button btn-secondary">
       <span v-if="showSignIn">need to create an account?</span>
@@ -85,6 +95,7 @@ export default {
       this.$store.dispatch('auth/createUser', this.creatingUser);
     },
     loginUser() {
+      console.log('loginUser ', this.returningUser);
       this.$store.dispatch('auth/login', this.returningUser);
     },
     recoverPassword() {
@@ -94,8 +105,18 @@ export default {
     toggleSignInSignUp() {
       this.showSignIn = !this.showSignIn;
     },
+    verifyEmail() {
+      alert('I\'m not setup yet');
+    },
   },
-  computed: {},
+  computed: {
+    newUserConfirmationEmailSent() {
+      return this.$store.state.auth.newUserConfirmationEmailSent;
+    },
+  },
+  created() {
+    this.$store.dispatch('refreshData');
+  },
 };
 </script>
 

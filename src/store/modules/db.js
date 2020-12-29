@@ -68,12 +68,14 @@ export default ({
     },
     getUserData() {
       const user = firebase.auth().currentUser;
-      firebase.database().ref(`users/${user.uid}`).once('value')
-        .then((snapshot) => {
-          const { location, todos, quickLinks } = snapshot.val();
-          this.commit('db/setUserData', { location, todos, quickLinks });
-        })
-        .then((err) => console.log('err getUserData ', err));
+      if (user) {
+        firebase.database().ref(`users/${user.uid}`).once('value')
+          .then((snapshot) => {
+            const { location, todos, quickLinks } = snapshot.val();
+            this.commit('db/setUserData', { location, todos, quickLinks });
+          })
+          .catch((err) => console.log('err getUserData ', err));
+      }
     },
   },
 });

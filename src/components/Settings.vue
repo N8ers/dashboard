@@ -93,6 +93,9 @@ export default {
   mounted() {
     window.checkAndAttachMapScript(this.initLocationSearch);
   },
+  created() {
+    this.$store.dispatch('refreshData');
+  },
 };
 </script>
 
