@@ -11,7 +11,7 @@
       </button>
     </div>
 
-    <fieldset>
+    <fieldset :class="showDeleteAccountModal && 'opacity-half'">
       <div class="mb-10">
         <input type="text" v-model="user.displayName" class="form-input" />
         <button @click="updateDisplayName" class="btn-secondary form-btn">
@@ -29,9 +29,24 @@
         />
         <button @click="setNewLocation" class="btn-secondary form-btn">Update location</button>
       </div>
+
+      <button
+        @click="showDeleteAccountModal = !showDeleteAccountModal"
+        class="btn-secondary mt-10"
+      >delete account?</button>
     </fieldset>
 
-    <button @click="deleteAccount" class="btn-secondary">delete account?</button>
+    <div v-if="showDeleteAccountModal" class="mt-10">
+      <h3 class="m-10">If you delete your account all user data will be destroyed</h3>
+      <button
+        @click="showDeleteAccountModal = false"
+        class="btn-primary form-btn-tall"
+      >No, Don't Delete My Account</button>
+      <button
+        @click="deleteAccount"
+        class="btn-secondary form-btn-tall"
+      >Yes, Delete My Account</button>
+    </div>
 
     <br />
     <br />
@@ -52,6 +67,7 @@ export default {
     return {
       displayName: null,
       updatedLocation: null,
+      showDeleteAccountModal: false,
       testData: {
         todoName: null,
       },
@@ -106,5 +122,7 @@ export default {
 </script>
 
 <style>
-
+.opacity-half {
+  opacity: 0.5;
+}
 </style>

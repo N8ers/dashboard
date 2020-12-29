@@ -150,4 +150,10 @@ fieldset {
   height: 34px;
 }
 
+.form-btn-tall {
+  margin: 5px;
+  width: 172px;
+  height: 45px;
+}
+
 </style>
