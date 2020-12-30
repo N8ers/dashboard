@@ -2,6 +2,7 @@
   <div>
     <h1 class="welcome-header">Welcome to dashboard!</h1>
 
+    <!-- LOG IN -->
     <form v-if="showSignIn && !showRecoverEmail" @submit.prevent="loginUser">
       <fieldset class="auth-card">
         <input
@@ -20,6 +21,7 @@
       </fieldset>
     </form>
 
+    <!-- SIGN UP -->
     <form v-if="!showSignIn && !showRecoverEmail" @submit.prevent="createUser">
       <fieldset class="auth-card">
         <input
@@ -38,6 +40,7 @@
       </fieldset>
     </form>
 
+    <!-- RECOVER PASSWORD -->
     <form v-if="showRecoverEmail">
       <fieldset class="auth-card">
         <input type="email" v-model="recovery.email" placeholder="email" class="auth-input" />
@@ -49,23 +52,22 @@
       </fieldset>
     </form>
 
-    <div v-if="!newUserConfirmationEmailSent">
-      <h3>We sent you a confirmation email!</h3>
-      <h4>Once you confirm your email, you can sign in.</h4>
-      <h5>If you need the email sent again,
-        <span class="cursor-pointer green" @click="verifyEmail">click here!</span>
-      </h5>
-    </div>
-
-    <button @click="toggleSignInSignUp" class="auth-button btn-secondary cursor-pointer">
+    <!-- TOGGLE BUTTONS -->
+    <button
+      v-if="!showRecoverEmail"
+      @click="toggleSignInSignUp"
+      class="auth-button btn-secondary cursor-pointer"
+    >
       <span v-if="showSignIn">need to create an account?</span>
       <span v-if="!showSignIn">already have an account?</span>
     </button>
 
     <button
       @click="showRecoverEmail = !showRecoverEmail"
-      class="auth-button btn-secondary cursor-pointer">
-      forget your password?
+      class="auth-button btn-secondary cursor-pointer"
+    >
+      <span v-if="!showRecoverEmail">forgot your password?</span>
+      <span v-if="showRecoverEmail">sign in</span>
     </button>
   </div>
 </template>
@@ -105,9 +107,6 @@ export default {
     },
     toggleSignInSignUp() {
       this.showSignIn = !this.showSignIn;
-    },
-    verifyEmail() {
-      alert('I\'m not setup yet');
     },
   },
   computed: {
