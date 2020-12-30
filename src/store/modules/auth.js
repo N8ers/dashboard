@@ -60,7 +60,7 @@ export default ({
     },
     updateDisplayName(context, displayName) {
       const user = firebase.auth().currentUser;
-      user.updateProfile({ displayName })
+      return user.updateProfile({ displayName })
         .then(() => this.dispatch('auth/getUser'))
         .catch((err) => console.log('error: ', err));
     },
@@ -123,9 +123,8 @@ export default ({
         })
         .catch((err) => console.log('error: ', err));
     },
-    verifyEmail(user) {
-      console.log('user ', user);
-      // const user = firebase.auth().currentUser;
+    verifyEmail() {
+      const user = firebase.auth().currentUser;
       if (user && !user.emailVerified) {
         user.sendEmailVerification()
           .then((res) => console.log('res ', res))
@@ -142,6 +141,15 @@ export default ({
       user.delete()
         .then(() => console.log('deleted'))
         .catch((err) => console.log('error: ', err));
+    },
+    getEmailValidationStatus() {
+      const user = firebase.auth().currentUser;
+      return user.emailVerified;
+    },
+    async completeRegerestration(context, payload) {
+      await this.dispatch('auth/updateDisplayName', payload.displayName);
+      await this.dispatch('db/setNewLocation', payload.location);
+      router.replace('/');
     },
   },
 });

@@ -84,7 +84,7 @@ export default {
       this.clonedQuickLinks.splice(index, 1);
     },
     setClonedQuickLinks() {
-      this.clonedQuickLinks = _clonedeep(this.$store.state.db.quickLinks);
+      this.clonedQuickLinks = _clonedeep(this.$store.state.db.quickLinks) || [];
     },
   },
   computed: {},

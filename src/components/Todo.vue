@@ -18,12 +18,13 @@
           v-model="todo.completed"
           @change="updateTodos"
         />
-        <input v-if="editMode" class="ml-10 form-input-sm w-300" type="text" v-model="todo.name" />
         <span
           v-if="!editMode"
           class="ml-10"
           :class="todo.completed && 'completed-todo'"
         >{{ todo.name }}</span>
+
+        <input v-if="editMode" class="ml-10 form-input-sm w-300" type="text" v-model="todo.name" />
         <button v-if="editMode" @click="removeTodo(index)" class="btn-secondary cursor-pointer">
           <font-awesome-icon icon="trash" />
         </button>

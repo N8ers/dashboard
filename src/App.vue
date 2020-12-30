@@ -150,6 +150,10 @@ fieldset {
   display: block;
 }
 
+.error {
+  color: red;
+}
+
   /* ATOMIC STYLES */
 
 .ml-10 {

@@ -10,6 +10,14 @@
       </button>
     </div>
 
+    <div class="mt-20">
+      <h3>We sent you a confirmation email!</h3>
+      <h4>Once you confirm your email, you can sign in.</h4>
+      <h5>If you need the email sent again,
+        <span class="cursor-pointer green">click here!</span>
+      </h5>
+    </div>
+
     <fieldset :class="showDeleteAccountModal && 'opacity-half'">
       <div class="mb-10">
         <input type="text" v-model="user.displayName" class="form-input" />
@@ -111,6 +119,9 @@ export default {
     },
     user() {
       return _clonedeep(this.$store.state.auth.user);
+    },
+    newUserConfirmationEmailSent() {
+      return this.$store.state.auth.newUserConfirmationEmailSent;
     },
   },
   mounted() {

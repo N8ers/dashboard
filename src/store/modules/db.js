@@ -53,8 +53,10 @@ export default ({
     },
     setNewLocation(context, location) {
       const user = firebase.auth().currentUser;
-      firebase.database().ref(`users/${user.uid}`).child('location').set(location);
-      this.dispatch('db/getUserData');
+      return firebase.database().ref(`users/${user.uid}`).child('location').set(location)
+        .then(() => {
+          this.dispatch('db/getUserData');
+        });
     },
     updateQuickLinks(context, quickLinks) {
       const user = firebase.auth().currentUser;

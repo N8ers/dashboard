@@ -109,11 +109,6 @@ export default {
       this.showSignIn = !this.showSignIn;
     },
   },
-  computed: {
-    newUserConfirmationEmailSent() {
-      return this.$store.state.auth.newUserConfirmationEmailSent;
-    },
-  },
   created() {
     this.$store.dispatch('refreshData');
   },
