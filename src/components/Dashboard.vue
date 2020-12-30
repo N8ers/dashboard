@@ -1,10 +1,10 @@
 <template>
   <div>
     <router-link to="/settings">
-      <font-awesome-icon
-        icon="cog"
-        class="gear-icon cursor-pointer btn-primary m-10"
-      />
+      <button class="float-right btn-secondary m-10">
+        Settings
+        <font-awesome-icon icon="cog" />
+      </button>
     </router-link>
 
     <Header />

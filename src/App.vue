@@ -128,9 +128,7 @@ fieldset {
   font-size: 16px;
 }
 
-.gear-icon {
-  height: 20px;
-  width: 20px;
+.float-right {
   float: right;
 }
 
