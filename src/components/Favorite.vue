@@ -1,43 +1,48 @@
 <template>
-  <div class='favorite-wrapper green-border'>
+  <div class='m-20'>
       <h3 class="m-10">Quick Launch</h3>
 
-      <button v-if="editMode" @click="updateQuickLinks" class="btn-primary mb-10">
-        <font-awesome-icon icon="save" class="cursor-pointer" />
+      <button
+        v-if="editMode"
+        @click="updateQuickLinks"
+        class="btn-primary mb-10 cursor-pointer"
+      >
+        <font-awesome-icon icon="save" />
       </button>
-      <button v-if="!editMode" @click="editMode = !editMode" class="btn-primary mb-10">
-        <font-awesome-icon icon="edit" class="cursor-pointer" />
+      <button
+        v-if="!editMode"
+        @click="editMode = !editMode"
+        class="btn-primary mb-10 cursor-pointer"
+      >
+        <font-awesome-icon icon="edit" />
       </button>
 
       <div v-if="editMode" class="mb-10">
         <div v-for="(site, index) in clonedQuickLinks" :key="site + index" green-border>
-          <label>name: </label>
-          <input v-model="site.name" />
-          <label>url: </label>
-          <input v-model="site.url" />
-          <button @click="removeQuickLink(index)" class="btn-secondary">
-            <font-awesome-icon icon="trash" class="cursor-pointer" />
+          <input v-model="site.name" placeholder="name" class="form-input-sm" />
+          <input v-model="site.url" placeholder="url" class="form-input-sm" />
+          <button @click="removeQuickLink(index)" class="btn-secondary cursor-pointer">
+            <font-awesome-icon icon="trash" />
           </button>
         </div>
+
         <div>
           <h3>add new quick link</h3>
-          <label>name: </label>
-          <input v-model="newLink.name" />
-          <label>url: </label>
-          <input v-model="newLink.url" />
-          <button @click="addQuickLink" class="btn-secondary">
-            <font-awesome-icon icon="plus" class="cursor-pointer" />
+          <input v-model="newLink.name" placeholder="name" class="form-input-sm" />
+          <input v-model="newLink.url" placeholder="url" class="form-input-sm" />
+          <button @click="addQuickLink" class="btn-secondary cursor-pointer">
+            <font-awesome-icon icon="plus" />
           </button>
         </div>
       </div>
 
       <div v-if="!editMode">
         <span
-          class="green-border quick-link"
+          class="m-10"
           v-for="(site, index) in clonedQuickLinks"
           :key="site + index"
         >
-          <button @click="launchFavorite(site.url)" class="btn-secondary">
+          <button @click="launchFavorite(site.url)" class="btn-secondary cursor-pointer">
             {{ site.name }}
           </button>
         </span>
@@ -95,35 +100,5 @@ export default {
 </script>
 
 <style>
-.favorite-wrapper {
-  margin: 20px;
-}
 
-.current {
-  border: 1px solid black;
-}
-
-.table {
-  margin: 0 auto;
-  text-align: left;
-}
-
-.table td {
-  margin-right: 10px;
-}
-
-.quick-link {
-  margin: 10px;
-}
-
-button {
-  background-color: #454545;
-  color:#19e0a3;
-  text-align: center;
-  text-decoration: none;
-}
-
-button:hover {
-  cursor: pointer;
-}
 </style>

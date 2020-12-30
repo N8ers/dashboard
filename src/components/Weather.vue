@@ -1,9 +1,9 @@
 <template>
-  <div class='weather-wrapper green-border'>
+  <div class='weather-wrapper'>
     <h3 class="m-10">{{ location.address }}</h3>
     <div v-if='weather'>
 
-      <div class="current columns">
+      <div class="current columns-internal">
         <div class="colum align-left">
           <div class="current-temp">{{ currently.temp }}&#176;F</div>
           <div class="current-humidity">{{ currently.humidity }}% humidity</div>
@@ -15,7 +15,7 @@
       </div>
 
       <div v-for="(day, index) in forcast" :key="day.day">
-        <div :class="index % 2 === 0 ? 'even-day': 'odd-day'" class="columns">
+        <div :class="index % 2 === 0 ? 'even-day': 'odd-day'" class="columns-internal">
           <div class="forcast-column align-left">
             <span class="">{{ day.day }}</span>
           </div>
@@ -23,9 +23,9 @@
             <span> <img :src="'http://openweathermap.org/img/w/' + day.icon + '.png'" /></span>
           </div>
           <div class="forcast-column align-right">
-            <span>{{ day.hi }}&#176;F</span>
+            <span>{{ day.hi }}&#176;</span>
             <span> | </span>
-            <span>{{ day.lo }}&#176;F</span>
+            <span>{{ day.lo }}&#176;</span>
           </div>
         </div>
       </div>
@@ -110,7 +110,6 @@ export default {
 }
 
 .current {
-  border: 1px solid black;
   padding: 10px;
 }
 
@@ -122,7 +121,6 @@ export default {
   width: 100px;
   margin: 5px;
   margin-bottom: 5px;
-  vertical-align: center;
   height: 50px;
 }
 

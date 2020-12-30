@@ -1,5 +1,5 @@
 <template>
-  <div class="green-border">
+  <div class="">
     <h1 class="greeting">Hey {{ displayName }}</h1>
     <h3 class="date">happy {{ date.day }}, {{ date.date }}!</h3>
   </div>
@@ -32,11 +32,11 @@ export default {
 
 <style>
 
-.greeting {
+/* .greeting {
   font-size: 64px;
 }
 
 .date {
   font-size: 32px;
-}
+} */
 </style>

@@ -1,20 +1,19 @@
 <template>
   <div>
     <div>
-      <router-link to="/"><button class="btn-secondary mt-10">Back</button></router-link>
-      <button @click="logOutUser" class="btn-secondary ml-10 mt-10">
+      <router-link to="/">
+        <button class="btn-secondary mt-10 cursor-pointer">Back</button>
+      </router-link>
+      <button @click="logOutUser" class="btn-secondary ml-10 mt-10 cursor-pointer">
         LogOut
-        <font-awesome-icon
-          icon="sign-out-alt"
-          class="cursor-pointer"
-        />
+        <font-awesome-icon icon="sign-out-alt" />
       </button>
     </div>
 
     <fieldset :class="showDeleteAccountModal && 'opacity-half'">
       <div class="mb-10">
         <input type="text" v-model="user.displayName" class="form-input" />
-        <button @click="updateDisplayName" class="btn-secondary form-btn">
+        <button @click="updateDisplayName" class="btn-secondary form-btn cursor-pointer">
           Update display name
         </button>
       </div>
@@ -27,12 +26,14 @@
           :placeholder="location.address"
           v-model="location.address"
         />
-        <button @click="setNewLocation" class="btn-secondary form-btn">Update location</button>
+        <button @click="setNewLocation" class="btn-secondary form-btn cursor-pointer">
+          Update location
+        </button>
       </div>
 
       <button
         @click="showDeleteAccountModal = !showDeleteAccountModal"
-        class="btn-secondary mt-10"
+        class="btn-secondary mt-10 cursor-pointer"
       >delete account?</button>
     </fieldset>
 
@@ -40,11 +41,11 @@
       <h3 class="m-10">If you delete your account all user data will be destroyed</h3>
       <button
         @click="showDeleteAccountModal = false"
-        class="btn-primary form-btn-tall"
+        class="btn-primary form-btn-tall cursor-pointer"
       >No, Don't Delete My Account</button>
       <button
         @click="deleteAccount"
-        class="btn-secondary form-btn-tall"
+        class="btn-secondary form-btn-tall cursor-pointer"
       >Yes, Delete My Account</button>
     </div>
 

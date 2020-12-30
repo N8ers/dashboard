@@ -61,6 +61,97 @@ fieldset {
   color: #42b983;
 }
 
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.columns-internal {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.column {
+  margin: 20px;
+}
+
+.btn-primary {
+  background-color: #42b983;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+.btn-secondary {
+  background-color: #2c3e50;
+  color: #42b983;
+  border: none;
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+.float-right {
+  float: right;
+}
+
+.cursor-pointer:hover {
+  cursor: pointer;
+}
+
+.form-input {
+  margin: 15px auto;
+  width: 250px;
+  padding: 6px;
+}
+
+.form-input-sm {
+  margin: 5px auto;
+  width: 250px;
+  padding: 6px;
+}
+
+.form-btn {
+  margin: 5px;
+  width: 172px;
+  height: 34px;
+}
+
+.form-btn-tall {
+  margin: 5px;
+  width: 172px;
+  height: 45px;
+}
+
+.welcome-header {
+  padding-top: 100px;
+}
+
+.auth-card {
+  margin: 0 auto;
+  border: none;
+  width: 350px;
+}
+
+.auth-input {
+  margin: 15px auto;
+  display: block;
+  width: 300px;
+  padding: 6px;
+}
+
+.auth-button {
+  margin: 10px auto;
+  display: block;
+}
+
+  /* ATOMIC STYLES */
+
 .ml-10 {
   margin-left: 10px;
 }
@@ -75,6 +166,10 @@ fieldset {
 
 .mb-10 {
   margin-bottom: 10px;
+}
+
+.m-20 {
+  margin: 20px;
 }
 
 .mt-20 {
@@ -98,60 +193,11 @@ fieldset {
 }
 
 .align-right {
-  text-align: left;
+  text-align: right;
 }
 
-.columns {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.column {
-  margin: 20px;
-}
-
-.btn-primary {
-  background-color: #42b983;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.btn-secondary {
-  background-color: #2c3e50;
-  color: #42b983;
-  border: none;
-  padding: 5px 10px;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.float-right {
-  float: right;
-}
-
-.cursor-pointer:hover {
-  cursor: pointer;
-}
-
-.form-input {
-  margin: 15px auto;
-  width: 250px;
-  padding: 6px;
-}
-
-.form-btn {
-  margin: 5px;
-  width: 172px;
-  height: 34px;
-}
-
-.form-btn-tall {
-  margin: 5px;
-  width: 172px;
-  height: 45px;
+.w-300 {
+  width: 300px;
 }
 
 </style>

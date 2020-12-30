@@ -1,12 +1,12 @@
 <template>
-  <div class="todo-wrapper green-border">
+  <div class="todo-wrapper">
 
     <h3 class="m-10">ToDo</h3>
-    <button v-if="editMode" @click="updateTodos" class="btn-primary mb-10">
-      <font-awesome-icon icon="save" class="cursor-pointer" />
+    <button v-if="editMode" @click="updateTodos" class="btn-primary mb-10 cursor-pointer">
+      <font-awesome-icon icon="save" />
     </button>
-    <button v-if="!editMode" @click="editMode = !editMode" class="btn-primary mb-10">
-      <font-awesome-icon icon="edit" class="cursor-pointer" />
+    <button v-if="!editMode" @click="editMode = !editMode" class="btn-primary mb-10 cursor-pointer">
+      <font-awesome-icon icon="edit" />
     </button>
 
     <div v-for="(todo, index) in clonedTodo" :key="todo.index" class="todo">
@@ -18,22 +18,26 @@
           v-model="todo.completed"
           @change="updateTodos"
         />
-        <input v-if="editMode" class="ml-10" type="text" v-model="todo.name" />
+        <input v-if="editMode" class="ml-10 form-input-sm w-300" type="text" v-model="todo.name" />
         <span
           v-if="!editMode"
           class="ml-10"
           :class="todo.completed && 'completed-todo'"
         >{{ todo.name }}</span>
-        <button v-if="editMode" @click="removeTodo(index)" class="btn-secondary">
-          <font-awesome-icon icon="trash" class="cursor-pointer" />
+        <button v-if="editMode" @click="removeTodo(index)" class="btn-secondary cursor-pointer">
+          <font-awesome-icon icon="trash" />
         </button>
       </div>
     </div>
 
-    <div v-if="editMode">
-      <input type="text" v-model="newTodo" />
-      <button @click="addTodo" class="btn-secondary">
-        <font-awesome-icon icon="plus" class="cursor-pointer" />
+    <div v-if="editMode" class="todo row">
+      <input
+        type="text"
+        v-model="newTodo"
+        class="ml-10 form-input-sm w-300"
+        placeholder="new todo..." />
+      <button @click="addTodo" class="btn-secondary cursor-pointer">
+        <font-awesome-icon icon="plus" />
       </button>
     </div>
 
@@ -84,6 +88,7 @@ export default {
 <style>
 .todo-wrapper {
   width: 400px;
+  min-width: 400px;
 }
 
 .todo {

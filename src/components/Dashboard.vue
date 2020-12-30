@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link to="/settings">
-      <button class="float-right btn-secondary m-10">
+      <button class="float-right btn-secondary m-10 cursor-pointer">
         Settings
         <font-awesome-icon icon="cog" />
       </button>

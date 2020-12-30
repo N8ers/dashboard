@@ -16,7 +16,7 @@
           placeholder="password"
           class="auth-input"
         />
-        <button class="btn-primary" type="submit">Login!</button>
+        <button class="btn-primary cursor-pointer" type="submit">Login!</button>
       </fieldset>
     </form>
 
@@ -34,7 +34,7 @@
           placeholder="password"
           class="auth-input"
         />
-        <button class="btn-primary">Signup!</button>
+        <button class="btn-primary cursor-pointer">Signup!</button>
       </fieldset>
     </form>
 
@@ -43,7 +43,7 @@
         <input type="email" v-model="recovery.email" placeholder="email" class="auth-input" />
         <button
           @click='recoverPassword'
-          class="btn-primary"
+          class="btn-primary cursor-pointer"
         >send email to recover your password!</button>
         <div v-if="emailRecoverySent">An email will be sent shortly, check your inbox</div>
       </fieldset>
@@ -57,12 +57,14 @@
       </h5>
     </div>
 
-    <button @click="toggleSignInSignUp" class="auth-button btn-secondary">
+    <button @click="toggleSignInSignUp" class="auth-button btn-secondary cursor-pointer">
       <span v-if="showSignIn">need to create an account?</span>
       <span v-if="!showSignIn">already have an account?</span>
     </button>
 
-    <button @click="showRecoverEmail = !showRecoverEmail" class="auth-button btn-secondary">
+    <button
+      @click="showRecoverEmail = !showRecoverEmail"
+      class="auth-button btn-secondary cursor-pointer">
       forget your password?
     </button>
   </div>
@@ -120,28 +122,5 @@ export default {
 </script>
 
 <style>
-
-.welcome-header {
-  padding-top: 100px;
-
-}
-
-.auth-card {
-  margin: 0 auto;
-  border: none;
-  width: 350px;
-}
-
-.auth-input {
-  margin: 15px auto;
-  display: block;
-  width: 300px;
-  padding: 6px;
-}
-
-.auth-button {
-  margin: 10px auto;
-  display: block;
-}
 
 </style>
