@@ -26,8 +26,12 @@ const routes = [
   },
   {
     path: '/welcome',
-    name: 'welcom',
+    name: 'welcome',
     component: Welcome,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: Dashboard,
   },
 ];
 
