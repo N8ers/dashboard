@@ -23,7 +23,6 @@ jobs:
         run: npm run build
         
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           VUE_APP_OpenWeatherKey: ${{ secrets.VUE_APP_OpenWeatherKey }}
           VUE_APP_GOOGLE_KEY: ${{ secrets.VUE_APP_GOOGLE_KEY }}
           VUE_APP_FIREBASE_KEY: ${{ secrets.VUE_APP_FIREBASE_KEY }}
@@ -38,3 +37,5 @@ jobs:
       - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
