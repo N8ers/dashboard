@@ -27,15 +27,25 @@ const firebaseConfig = {
 
 firebase.default.initializeApp(firebaseConfig);
 firebase.default.database();
-firebase.default.auth().onAuthStateChanged((result) => {
-  if (result) {
+firebase.default.auth().onAuthStateChanged((user) => {
+  if (user && user.emailVerified) {
     const userData = {
-      email: result.email,
-      uid: result.uid,
-      displayName: result.displayName,
+      email: user.email,
+      uid: user.uid,
+      displayName: user.displayName,
     };
     store.commit('auth/setUser', userData);
     store.dispatch('db/getUserData');
+  } else if (user) {
+    const userData = {
+      email: user.email,
+      uid: user.uid,
+      displayName: user.displayName,
+    };
+    store.commit('auth/setUser', userData);
+    router.replace('regester');
+  } else if (router.currentRoute.name !== 'welcome') {
+    router.replace('welcome');
   }
 });
 

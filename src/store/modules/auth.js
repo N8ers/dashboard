@@ -48,7 +48,6 @@ export default ({
   actions: {
     getUser() {
       const user = firebase.auth().currentUser;
-      console.log('getUser fired ', user);
       if (user?.uid) {
         const userData = {
           email: user.email,
