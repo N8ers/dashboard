@@ -55,17 +55,7 @@ export default {
       const corsPrefix = 'https://cors-anywhere.herokuapp.com/';
       const units = 'imperial';
       const { lat, lng } = this.location;
-      const baseUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly&appid=${apiKey}&units=${units}`;
-
-      let url;
-
-      if (process.env.NODE_ENV === 'development') {
-        url = `${corsPrefix}${baseUrl}`;
-      } else {
-        url = baseUrl;
-      }
-
-      const response = await axios.get(url);
+      const response = await axios.get(`${corsPrefix}http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly&appid=${apiKey}&units=${units}`);
       this.weather = response.data;
     },
     dayClass(dayIndex) {

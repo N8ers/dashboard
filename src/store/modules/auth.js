@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import firebase from 'firebase';
+import { auth } from 'firebase/app';
+
 import router from '../../router/index';
 
 Vue.use(Vuex);
@@ -47,7 +48,7 @@ export default ({
   },
   actions: {
     getUser() {
-      const user = firebase.auth().currentUser;
+      const user = auth().currentUser;
       if (user?.uid) {
         const userData = {
           email: user.email,
@@ -58,14 +59,14 @@ export default ({
       }
     },
     updateDisplayName(context, displayName) {
-      const user = firebase.auth().currentUser;
+      const user = auth().currentUser;
       return user.updateProfile({ displayName })
         .then(() => this.dispatch('auth/getUser'))
         .catch((err) => console.log('error: ', err));
     },
     createUser(context, newUser) {
       const { email, password } = newUser;
-      firebase.auth().createUserWithEmailAndPassword(email, password)
+      auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
           // const user = {
           // email: result.email,
@@ -78,9 +79,9 @@ export default ({
         .catch((err) => console.log('error ', err));
     },
     login(context, user) {
-      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      auth().setPersistence(auth.Auth.Persistence.LOCAL)
         .then(() => {
-          firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+          auth().signInWithEmailAndPassword(user.email, user.password)
             .then((result) => {
               const userData = {
                 email: result.user.email,
@@ -115,7 +116,7 @@ export default ({
         });
     },
     logout() {
-      firebase.auth().signOut()
+      auth().signOut()
         .then(() => {
           this.commit('auth/clearUserData');
           router.replace('welcome');
@@ -123,7 +124,7 @@ export default ({
         .catch((err) => console.log('error: ', err));
     },
     verifyEmail() {
-      const user = firebase.auth().currentUser;
+      const user = auth().currentUser;
       if (user && !user.emailVerified) {
         user.sendEmailVerification()
           .then((res) => console.log('res ', res))
@@ -131,18 +132,18 @@ export default ({
       }
     },
     sendRecoverPasswordEmail(context, email) {
-      firebase.auth().sendPasswordResetEmail(email)
+      auth().sendPasswordResetEmail(email)
         .then(() => console.log('sent'))
         .catch((err) => console.log('error: ', err));
     },
     deleteAccount() {
-      const user = firebase.auth().currentUser;
+      const user = auth().currentUser;
       user.delete()
         .then(() => console.log('deleted'))
         .catch((err) => console.log('error: ', err));
     },
     getEmailValidationStatus() {
-      const user = firebase.auth().currentUser;
+      const user = auth().currentUser;
       return user.emailVerified;
     },
     async completeRegerestration(context, payload) {
