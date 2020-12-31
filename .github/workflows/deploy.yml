@@ -22,9 +22,6 @@ jobs:
       - name: building project...
         run: npm run build
         
-      - uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           VUE_APP_OpenWeatherKey: ${{ secrets.VUE_APP_OpenWeatherKey }}
@@ -37,3 +34,7 @@ jobs:
           VUE_APP_FIREBASE_MESSAGEINGSENDERID: ${{ secrets.VUE_APP_FIREBASE_MESSAGEINGSENDERID }}
           VUE_APP_FIREBASE_APPID: ${{ secrets.VUE_APP_FIREBASE_APPID }}
           VUE_APP_FIREBASE_MEASUREMENTID: ${{ secrets.VUE_APP_FIREBASE_MEASUREMENTID }}
+        
+      - uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
