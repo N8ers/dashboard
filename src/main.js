@@ -26,8 +26,6 @@ const firebaseConfig = {
   measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENTID,
 };
 
-console.log('hi n8: ', process.env.VUE_APP_FIREBASE_AUTHDOMAIN);
-
 firebase.default.initializeApp(firebaseConfig);
 firebase.default.database();
 firebase.default.auth().onAuthStateChanged((user) => {
