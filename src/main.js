@@ -18,6 +18,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_KEY,
   authDomain: process.env.VUE_APP_FIREBASE_AUTHDOMAIN,
+  databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL,
   projectId: process.env.VUE_APP_FIREBASE_PROJECTID,
   storageBucket: process.env.VUE_APP_FIREBASE_STORAGEBUCKET,
   messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGEINGSENDERID,
