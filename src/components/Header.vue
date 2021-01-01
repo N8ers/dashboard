@@ -29,14 +29,3 @@ export default {
   },
 };
 </script>
-
-<style>
-
-/* .greeting {
-  font-size: 64px;
-}
-
-.date {
-  font-size: 32px;
-} */
-</style>

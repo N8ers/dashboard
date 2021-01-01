@@ -132,9 +132,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.opacity-half {
-  opacity: 0.5;
-}
-</style>
