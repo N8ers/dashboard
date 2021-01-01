@@ -20,12 +20,11 @@
 }
 
 .even-todo {
-  /* make this just a darker gray not black */
-  background-color: #333333;
+  background-color: $gray-darker;
 }
 
 .odd-todo {
-  background-color: #454545;
+  background-color: $gray;
 }
 
 .row {
@@ -62,10 +61,10 @@
 }
 
 .even-day {
-  background-color: #333333;
+  background-color: $gray-darker;
 }
 .odd-day {
-  background-color: #454545;
+  background-color: $gray;
 }
 
 .day-container {
