@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faCog, faSpinner, faSignOutAlt, faTrash, faPlus, faEdit, faSave,
