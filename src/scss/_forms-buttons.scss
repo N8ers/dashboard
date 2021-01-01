@@ -1,0 +1,61 @@
+.btn-primary {
+  background-color: $green-darker;
+  color: $white;
+  border: none;
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+.btn-secondary {
+  background-color: $gray-lighter;
+  color: $green-darker;
+  border: none;
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+.auth-card {
+  margin: 0 auto;
+  border: none;
+  width: 350px;
+}
+
+.auth-input {
+  margin: 15px auto;
+  display: block;
+  width: 300px;
+  padding: 6px;
+}
+
+.auth-button {
+  margin: 10px auto;
+  display: block;
+}
+
+.form-input {
+  margin: 15px auto;
+  width: 250px;
+  padding: 6px;
+}
+
+.form-input-sm {
+  margin: 5px auto;
+  width: 250px;
+  padding: 6px;
+}
+
+.form-btn {
+  margin: 5px;
+  width: 172px;
+  height: 34px;
+}
+
+.form-btn-tall {
+  margin: 5px;
+  width: 172px;
+  height: 45px;
+}

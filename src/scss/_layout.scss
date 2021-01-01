@@ -1,0 +1,22 @@
+fieldset {
+  border: none;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.columns-internal {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.column {
+  margin: 20px;
+}
+
+.float-right {
+  float: right;
+}

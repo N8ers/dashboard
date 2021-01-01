@@ -85,32 +85,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.todo-wrapper {
-  width: 400px;
-  min-width: 400px;
-}
-
-.todo {
-  text-align: left;
-  width: 100%;
-}
-
-.completed-todo {
-  text-decoration: line-through;
-}
-
-.even-todo {
-  /* make this just a darker gray not black */
-  background-color: #333333;
-}
-
-.odd-todo {
- background-color: #454545;
-}
-
-.row {
-  padding: 5px;
-}
-</style>
