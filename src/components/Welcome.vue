@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="welcome-header">Welcome to dashboard!</h1>
+    <h1 class="pt-100">Welcome to dashboard!</h1>
 
     <!-- LOG IN -->
     <form v-if="showSignIn && !showRecoverEmail" @submit.prevent="loginUser">

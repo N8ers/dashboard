@@ -18,7 +18,7 @@
       </button>
 
       <div v-if="editMode" class="mb-10">
-        <div v-for="(site, index) in clonedQuickLinks" :key="site + index" green-border>
+        <div v-for="(site, index) in clonedQuickLinks" :key="site + index">
           <input v-model="site.name" placeholder="name" class="form-input-sm" />
           <input v-model="site.url" placeholder="url" class="form-input-sm" />
           <button @click="removeQuickLink(index)" class="btn-secondary cursor-pointer">
