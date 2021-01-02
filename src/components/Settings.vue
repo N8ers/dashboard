@@ -60,7 +60,7 @@
     <br />
     <br />
     <br />
-    <fieldset>
+    <fieldset v-if="appIsInDevelopmentMode">
       <button @click="setTestData">reset test data</button>
       <button @click="sendEmailVerification">send email verification</button>
     </fieldset>
@@ -122,6 +122,12 @@ export default {
     },
     newUserConfirmationEmailSent() {
       return this.$store.state.auth.newUserConfirmationEmailSent;
+    },
+    appIsInDevelopmentMode() {
+      if (process.env.NODE_ENV === 'development') {
+        return true;
+      }
+      return false;
     },
   },
   mounted() {
