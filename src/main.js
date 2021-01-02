@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import routeHelper from './helpers/routeHelper';
 
 Vue.config.productionTip = false;
 
@@ -31,25 +32,7 @@ const firebaseConfig = {
 firebase.default.initializeApp(firebaseConfig);
 firebase.default.database();
 firebase.default.auth().onAuthStateChanged((user) => {
-  if (user && user.emailVerified) {
-    const userData = {
-      email: user.email,
-      uid: user.uid,
-      displayName: user.displayName,
-    };
-    store.commit('auth/setUser', userData);
-    store.dispatch('db/getUserData');
-  } else if (user) {
-    const userData = {
-      email: user.email,
-      uid: user.uid,
-      displayName: user.displayName,
-    };
-    store.commit('auth/setUser', userData);
-    router.replace('regester');
-  } else if (router.currentRoute.name !== 'welcome') {
-    router.replace('welcome');
-  }
+  routeHelper.navigateForAuthChange(user);
 });
 
 window.checkAndAttachMapScript = (callback) => {
