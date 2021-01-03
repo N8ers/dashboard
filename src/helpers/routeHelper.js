@@ -15,15 +15,20 @@ const routeHelper = {
 
     // if user && email is verified
     // route to 'dashboard'
-    if (user && user.emailVerified) {
+    if (user && !user.emailVerified) {
+      console.log('user && user.emailVerified ', user);
       store.commit('auth/setUser', userData);
       store.dispatch('db/getUserData');
-      router.replace('regester');
+      if (router.currentRoute.name !== 'regester') {
+        router.replace('regester');
+      }
     // if user logged in BUT email is not verified
     // route to 'regester'
     } else if (user) {
       store.commit('auth/setUser', userData);
-      router.replace('regester');
+      if (router.currentRoute.name !== 'dashboard') {
+        router.replace('dashboard');
+      }
     // if user is not logged in and email is not verified
     // route to 'welcome'
     // check for 'currentRoute' to avoid routing redudency
