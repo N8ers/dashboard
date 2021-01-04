@@ -23,6 +23,15 @@ export default ({
       state.todos = todos;
       state.quickLinks = quickLinks;
     },
+    clearUserState(state) {
+      state.location = {
+        address: null,
+        lat: null,
+        lng: null,
+      };
+      state.todos = [];
+      state.quickLinks = [];
+    },
   },
   actions: {
     setDummyData() {

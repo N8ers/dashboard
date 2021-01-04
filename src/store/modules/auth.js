@@ -36,12 +36,13 @@ export default ({
       state.user.uid = user.uid;
       // router.replace('settings');
     },
-    clearUserData(state) {
+    clearUserState(state) {
       state.user = {
         email: null,
         uid: null,
         displayName: null,
       };
+      state.newUserConfirmationEmailSent = null;
     },
     newUserConfirmationEmailSent(state, bool) {
       state.newUserConfirmationEmailSent = bool;
@@ -119,7 +120,8 @@ export default ({
     logout() {
       firebase.auth().signOut()
         .then(() => {
-          this.commit('auth/clearUserData');
+          this.commit('auth/clearUserState');
+          this.commit('db/clearDataState');
           router.replace('welcome');
         })
         .catch((err) => console.log('error: ', err));
