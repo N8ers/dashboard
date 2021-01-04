@@ -26,6 +26,7 @@ const routeHelper = {
     // route to 'regester'
     } else if (user) {
       store.commit('auth/setUser', userData);
+      store.dispatch('db/getUserData');
       if (router.currentRoute.name !== 'dashboard') {
         router.replace('dashboard');
       }
