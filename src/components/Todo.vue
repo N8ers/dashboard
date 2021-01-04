@@ -67,7 +67,7 @@ export default {
       this.clonedTodo.splice(todoIndex, 1);
     },
     setClonedTodos() {
-      this.clonedTodo = _clonedeep(this.$store.state.db.todos);
+      this.clonedTodo = _clonedeep(this.$store.state.db.todos) || [];
     },
     updateTodos() {
       this.editMode = false;
