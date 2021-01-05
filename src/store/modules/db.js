@@ -23,7 +23,7 @@ export default ({
       state.todos = todos;
       state.quickLinks = quickLinks;
     },
-    clearUserState(state) {
+    clearDataState(state) {
       state.location = {
         address: null,
         lat: null,
