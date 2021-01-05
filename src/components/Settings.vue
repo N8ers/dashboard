@@ -20,7 +20,7 @@
 
     <fieldset :class="showDeleteAccountModal && 'opacity-half'">
       <div class="mb-10">
-        <input type="text" v-model="user.displayName" class="form-input" />
+        <input type="text" v-model="displayName" class="form-input" />
         <button @click="updateDisplayName" class="btn-secondary form-btn cursor-pointer">
           Update display name
         </button>
