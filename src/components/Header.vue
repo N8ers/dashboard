@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <h1 class="greeting">Hey {{ displayName }}</h1>
-    <h3 class="date">happy {{ date.day }}, {{ date.date }}!</h3>
+    <h3 class="date">happy {{ date }}!</h3>
   </div>
 </template>
 
@@ -19,9 +19,8 @@ export default {
   computed: {
     date() {
       const today = new Date();
-      const day = format(today, 'iiii');
-      const date = format(today, 'MMMM LL');
-      return { day, date };
+      const day = format(today, 'iiii, MMMM d');
+      return day;
     },
     displayName() {
       return this.$store.state.auth.user.displayName;
