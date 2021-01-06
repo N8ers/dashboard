@@ -1,13 +1,22 @@
 <template>
   <div class="todo-wrapper">
-
-    <h3 class="m-10">ToDo</h3>
-    <button v-if="editMode" @click="updateTodos" class="btn-primary mb-10 cursor-pointer">
-      <font-awesome-icon icon="save" />
-    </button>
-    <button v-if="!editMode" @click="editMode = !editMode" class="btn-primary mb-10 cursor-pointer">
-      <font-awesome-icon icon="edit" />
-    </button>
+    <div class="title h-30">
+      <h3 class="inline">ToDo</h3>
+      <button
+        v-if="editMode"
+        @click="updateTodos"
+        class="btn-primary mb-10 cursor-pointer pull-right"
+      >
+        <font-awesome-icon icon="save" />
+      </button>
+      <button
+        v-if="!editMode"
+        @click="editMode = !editMode"
+        class="btn-primary mb-10 cursor-pointer pull-right"
+      >
+        <font-awesome-icon icon="edit" />
+      </button>
+    </div>
 
     <div v-for="(todo, index) in clonedTodo" :key="todo.index" class="todo">
       <div :class="index % 2 === 0 ? 'even-todo': 'odd-todo'" class="row">

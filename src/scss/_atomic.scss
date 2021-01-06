@@ -46,10 +46,22 @@
   width: 300px;
 }
 
+.h-30 {
+  height: 30px;
+}
+
 .opacity-half {
   opacity: 0.5;
 }
 
 .cursor-pointer:hover {
   cursor: pointer;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.pull-right {
+  float: right;
 }

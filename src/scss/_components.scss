@@ -8,6 +8,7 @@
 .todo-wrapper {
   width: 400px;
   min-width: 400px;
+  border: 1px solid black;
 }
 
 .todo {
@@ -20,11 +21,11 @@
 }
 
 .even-todo {
-  background-color: $gray-darker;
+  background-color: $gray;
 }
 
 .odd-todo {
-  background-color: $gray;
+  background-color: $gray-darker;
 }
 
 .row {
@@ -33,7 +34,8 @@
 
 // Weather.vue
 .weather-wrapper {
-  width: 300px;
+  width: 400px;
+  border: 1px solid black;
 }
 
 .current {
@@ -60,6 +62,10 @@
   margin-right: 10px;
 }
 
+.title {
+  background-color: $gray-darker;
+}
+
 .even-day {
   background-color: $gray-darker;
 }
@@ -73,4 +79,11 @@
 
 .forcast-img {
   margin: 0 auto;
+}
+
+// Favorite.vue
+.favorite-wrapper {
+  margin: 0 auto;
+  width: 600px;
+  border: 1px solid black;
 }
