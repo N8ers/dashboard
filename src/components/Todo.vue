@@ -40,16 +40,16 @@
       </div>
     </div>
 
-    <div v-if="editMode" class="todo row">
+    <form v-if="editMode" class="todo row" @submit.prevent="addTodo">
       <input
         type="text"
         v-model="newTodo"
         class="ml-10 form-input-sm w-300"
         placeholder="new todo..." />
-      <button @click="addTodo" class="btn-secondary cursor-pointer">
+      <button class="btn-secondary cursor-pointer">
         <font-awesome-icon icon="plus" />
       </button>
-    </div>
+    </form>
 
   </div>
 </template>
