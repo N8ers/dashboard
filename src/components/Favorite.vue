@@ -27,14 +27,14 @@
         </button>
       </div>
 
-      <div>
+      <form @submit.prevent="addQuickLink">
         <h3>add new quick link</h3>
         <input v-model="newLink.name" placeholder="name" class="form-input-sm" />
         <input v-model="newLink.url" placeholder="url" class="form-input-sm" />
-        <button @click="addQuickLink" class="btn-secondary cursor-pointer">
+        <button class="btn-secondary cursor-pointer">
           <font-awesome-icon icon="plus" />
         </button>
-      </div>
+      </form>
     </div>
 
     <div v-if="!editMode">
