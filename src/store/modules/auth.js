@@ -16,6 +16,7 @@ export default ({
       displayName: null,
     },
     newUserConfirmationEmailSent: null,
+    loginErrorMessage: null,
   },
   mutations: {
     setUser(state, payload) {
@@ -47,6 +48,9 @@ export default ({
     newUserConfirmationEmailSent(state, bool) {
       state.newUserConfirmationEmailSent = bool;
     },
+    setLoginAlert(state, message) {
+      state.loginErrorMessage = message;
+    },
   },
   actions: {
     getUser() {
@@ -70,11 +74,6 @@ export default ({
       const { email, password } = newUser;
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
-          // const user = {
-          // email: result.email,
-          // uid: result.user.uid,
-          // };
-          // this.commit('auth/setSignUp', user);
           this.dispatch('auth/verifyEmail', result);
           this.commit('auth/newUserConfirmationEmailSent', true);
         })
@@ -92,29 +91,8 @@ export default ({
               };
               this.commit('auth/setUser', userData);
               router.replace('/');
-
-              // console.log('result ', result);
-              // if (result?.user?.emailVerified) {
-              //   console.log('if');
-              //   this.commit('auth/newUserConfirmationEmailSent', true);
-              // } else {
-              //   console.log('else');
-              //   const userData = {
-              //     email: result.user.email,
-              //     uid: result.user.uid,
-              //     displayName: result.user.displayName,
-              //   };
-              //   this.commit('auth/setUser', userData);
-              //   const { currentUser } = firebase.auth();
-              //   console.log('currentUser ', currentUser);
-              //   if (!currentUser?.displayName) {
-              //     router.replace('settings');
-              //   } else {
-              //     router.replace('dashboard');
-              //   }
-              // }
             })
-            .catch((err) => console.log('err ', err));
+            .catch((err) => this.commit('auth/setLoginAlert', err.message));
         });
     },
     logout() {
