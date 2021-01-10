@@ -40,6 +40,9 @@
           class="auth-input"
         />
         <button class="btn-primary cursor-pointer">Signup!</button>
+        <div v-if="$store.state.auth.signupErrorMessage" class="error">
+          {{ $store.state.auth.signupErrorMessage }}
+        </div>
       </fieldset>
     </form>
 

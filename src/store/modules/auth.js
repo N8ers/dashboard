@@ -51,6 +51,9 @@ export default ({
     setLoginAlert(state, message) {
       state.loginErrorMessage = message;
     },
+    setSignupAlert(state, message) {
+      state.signupErrorMessage = message;
+    },
   },
   actions: {
     getUser() {
@@ -77,7 +80,7 @@ export default ({
           this.dispatch('auth/verifyEmail', result);
           this.commit('auth/newUserConfirmationEmailSent', true);
         })
-        .catch((err) => console.log('error ', err));
+        .catch((err) => this.commit('auth/setSignupAlert', err.message));
     },
     login(context, user) {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
