@@ -18,6 +18,8 @@
       </button>
     </div>
 
+    <Loading v-if="$store.state.db.todosLoading" />
+
     <div v-for="(todo, index) in clonedTodo" :key="todo.index" class="todo">
       <div :class="index % 2 === 0 ? 'even-todo': 'odd-todo'" class="row">
         <input
@@ -57,8 +59,13 @@
 <script>
 import _clonedeep from 'lodash.clonedeep';
 
+import Loading from './Loading.vue';
+
 export default {
   name: 'Todo',
+  components: {
+    Loading,
+  },
   data() {
     return {
       editMode: false,

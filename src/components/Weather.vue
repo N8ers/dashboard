@@ -2,10 +2,7 @@
   <div class='weather-wrapper'>
     <h3 class="title h-30">{{ location.address }}</h3>
 
-    <div v-if='!weather'>
-      <font-awesome-icon icon="spinner" />
-      LOADING Weather...
-    </div>
+    <Loading v-if='!weather' />
 
     <div v-if='weather'>
 
@@ -43,15 +40,18 @@
 <script>
 import axios from 'axios';
 import { format, addDays } from 'date-fns';
-import userSettings from '../../userSettings.json';
+
+import Loading from './Loading.vue';
 
 const weatherKey = process.env.VUE_APP_OpenWeatherKey;
 
 export default {
   name: 'Weather',
+  components: {
+    Loading,
+  },
   data() {
     return {
-      userSettings,
       weather: null,
     };
   },

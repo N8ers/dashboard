@@ -18,35 +18,39 @@
       </button>
     </div>
 
-    <div v-if="editMode" class="mb-10">
-      <div v-for="(site, index) in clonedQuickLinks" :key="site + index">
-        <input v-model="site.name" placeholder="name" class="form-input-sm" />
-        <input v-model="site.url" placeholder="url" class="form-input-sm" />
-        <button @click="removeQuickLink(index)" class="btn-secondary cursor-pointer">
-          <font-awesome-icon icon="trash" />
-        </button>
+    <Loading v-if="$store.state.db.quickLinksLoading" />
+
+    <div>
+      <div v-if="editMode" class="mb-10">
+        <div v-for="(site, index) in clonedQuickLinks" :key="site + index">
+          <input v-model="site.name" placeholder="name" class="form-input-sm" />
+          <input v-model="site.url" placeholder="url" class="form-input-sm" />
+          <button @click="removeQuickLink(index)" class="btn-secondary cursor-pointer">
+            <font-awesome-icon icon="trash" />
+          </button>
+        </div>
+
+        <form @submit.prevent="addQuickLink">
+          <h3>add new quick link</h3>
+          <input v-model="newLink.name" placeholder="name" class="form-input-sm" />
+          <input v-model="newLink.url" placeholder="url" class="form-input-sm" />
+          <button class="btn-secondary cursor-pointer">
+            <font-awesome-icon icon="plus" />
+          </button>
+        </form>
       </div>
 
-      <form @submit.prevent="addQuickLink">
-        <h3>add new quick link</h3>
-        <input v-model="newLink.name" placeholder="name" class="form-input-sm" />
-        <input v-model="newLink.url" placeholder="url" class="form-input-sm" />
-        <button class="btn-secondary cursor-pointer">
-          <font-awesome-icon icon="plus" />
-        </button>
-      </form>
-    </div>
-
-    <div v-if="!editMode">
-      <span
-        class="m-10"
-        v-for="(site, index) in clonedQuickLinks"
-        :key="site + index"
-      >
-        <button @click="launchFavorite(site.url)" class="btn-secondary cursor-pointer">
-          {{ site.name }}
-        </button>
-      </span>
+      <div v-if="!editMode">
+        <span
+          class="m-10"
+          v-for="(site, index) in clonedQuickLinks"
+          :key="site + index"
+        >
+          <button @click="launchFavorite(site.url)" class="btn-secondary cursor-pointer">
+            {{ site.name }}
+          </button>
+        </span>
+      </div>
     </div>
 
   </div>
@@ -55,8 +59,13 @@
 <script>
 import _clonedeep from 'lodash.clonedeep';
 
+import Loading from './Loading.vue';
+
 export default {
   name: 'Favorite',
+  components: {
+    Loading,
+  },
   data() {
     return {
       editMode: false,

@@ -16,6 +16,8 @@ export default ({
     },
     todos: [],
     quickLinks: [],
+    todosLoading: false,
+    quickLinksLoading: false,
   },
   mutations: {
     setUserData(state, { location, todos, quickLinks }) {
@@ -31,6 +33,12 @@ export default ({
       };
       state.todos = [];
       state.quickLinks = [];
+    },
+    setTodosLoading(state, bool) {
+      state.todosLoading = bool;
+    },
+    setLinksLoadingLoading(state, bool) {
+      state.quickLinksLoading = bool;
     },
   },
   actions: {
@@ -79,6 +87,8 @@ export default ({
       this.dispatch('db/getUserData');
     },
     getUserData() {
+      this.commit('db/setTodosLoading', true);
+      this.commit('db/setLinksLoadingLoading', true);
       const user = firebase.auth().currentUser;
       if (user) {
         firebase.database().ref(`users/${user.uid}`).once('value')
@@ -86,7 +96,11 @@ export default ({
             const { location, todos, quickLinks } = snapshot.val();
             this.commit('db/setUserData', { location, todos, quickLinks });
           })
-          .catch((err) => console.log('err getUserData ', err));
+          .catch((err) => console.log('err getUserData ', err))
+          .finally(() => {
+            this.commit('db/setTodosLoading', false);
+            this.commit('db/setLinksLoadingLoading', false);
+          });
       }
     },
   },
