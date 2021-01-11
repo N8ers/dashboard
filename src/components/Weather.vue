@@ -1,6 +1,12 @@
 <template>
   <div class='weather-wrapper'>
     <h3 class="title h-30">{{ location.address }}</h3>
+
+    <div v-if='!weather'>
+      <font-awesome-icon icon="spinner" />
+      LOADING Weather...
+    </div>
+
     <div v-if='weather'>
 
       <div class="current columns-internal">
