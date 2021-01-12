@@ -18,9 +18,9 @@
       </button>
     </div>
 
-    <Loading v-if="$store.state.db.todosLoading" />
+    <Loading v-if="todosLoading" />
 
-    <div v-for="(todo, index) in clonedTodo" :key="todo.index" class="todo">
+    <div v-for="(todo, index) in todos" :key="todo.index" class="todo">
       <div :class="index % 2 === 0 ? 'even-todo': 'odd-todo'" class="row">
         <input
           v-if="!editMode"
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import _clonedeep from 'lodash.clonedeep';
 
 import Loading from './Loading.vue';
@@ -70,34 +71,27 @@ export default {
     return {
       editMode: false,
       newTodo: null,
-      clonedTodo: [],
     };
   },
   methods: {
     addTodo() {
       const newTodo = { name: _clonedeep(this.newTodo), completed: false };
-      this.clonedTodo.push(newTodo);
+      this.todos.push(newTodo);
       this.newTodo = null;
     },
     removeTodo(todoIndex) {
-      this.clonedTodo.splice(todoIndex, 1);
-    },
-    setClonedTodos() {
-      this.clonedTodo = _clonedeep(this.$store.state.db.todos) || [];
+      this.todos.splice(todoIndex, 1);
     },
     updateTodos() {
       this.editMode = false;
-      this.$store.dispatch('db/updateTodos', this.clonedTodo);
+      this.$store.dispatch('db/updateTodos', this.todos);
     },
   },
-  computed: { },
-  created() {
-    this.setClonedTodos();
-  },
-  watch: {
-    '$store.state.db.todos': function () {
-      this.setClonedTodos();
-    },
+  computed: {
+    ...mapState('db', {
+      todos: (state) => _clonedeep(state.todos),
+      todosLoading: (state) => state.todosLoading,
+    }),
   },
 };
 </script>
