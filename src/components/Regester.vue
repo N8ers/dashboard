@@ -1,39 +1,20 @@
 <template>
   <div>
+    <router-link to="/welcome">
+      <button class="btn-secondary m-10 cursor-pointer">
+        <font-awesome-icon icon="arrow-left" />
+        back
+      </button>
+    </router-link>
 
-    <h1>Just a few more steps and you'll be ready</h1>
-
-    <div class="m-10">
-      <label>select a display name: </label>
-      <input type="text" v-model="displayName" class="form-input" />
-      <div v-if="showDisplayNameError" class="error">you need a display name</div>
-    </div>
-
-    <div class="m-10">
-      <label>select your location: </label>
-      <input
-          type="text"
-          ref="search"
-          class="form-input"
-          v-model="location.address"
-        />
-      <div>(we don't do anything with this data, it's just to provide weather)</div>
-      <div v-if="showLocationError" class="error">you need a location</div>
-    </div>
+    <h3>we sent you a confirmation email, you'll need to confirm before continuing</h3>
 
     <div>
-      <h3>we sent you a confirmation email, you'll need to confirm before continuing</h3>
       <h4>need us to sent the email again?</h4>
       <button @click="sendEmailVerification" class="btn-secondary form-btn-tall cursor-pointer">
         resend confirmation email
       </button>
-      <div v-if="showEmailConfirmationError" class="error">you need to confirm your email</div>
     </div>
-
-    <div>When you've completed the above steps login in!</div>
-    <button @click="attemptSave" class="btn-secondary form-btn cursor-pointer">
-      save!
-    </button>
 
   </div>
 </template>
@@ -51,7 +32,6 @@ export default {
       },
       showDisplayNameError: false,
       showLocationError: false,
-      showEmailConfirmationError: false,
     };
   },
   methods: {
@@ -66,18 +46,6 @@ export default {
           lng: place.geometry.location.lng(),
         };
       });
-    },
-    async attemptSave() {
-      const emailVerified = await this.$store.dispatch('auth/getEmailValidationStatus');
-
-      if (emailVerified && this.displayNameIsValid && this.locationIsValid) {
-        const payload = { displayName: this.displayName, location: this.location };
-        this.$store.dispatch('auth/completeRegerestration', payload);
-      } else {
-        this.showDisplayNameError = !this.displayNameIsValid;
-        this.showLocationError = !this.locationIsValid;
-        this.showEmailConfirmationError = emailVerified;
-      }
     },
     sendEmailVerification() {
       this.$store.dispatch('auth/verifyEmail');

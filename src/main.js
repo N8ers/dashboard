@@ -4,7 +4,7 @@ import 'firebase/auth';
 import 'firebase/database';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faCog, faSpinner, faSignOutAlt, faTrash, faPlus, faEdit, faSave,
+  faCog, faSpinner, faSignOutAlt, faTrash, faPlus, faEdit, faSave, faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -15,7 +15,7 @@ import routeHelper from './helpers/routeHelper';
 
 Vue.config.productionTip = false;
 
-library.add(faCog, faSpinner, faSignOutAlt, faTrash, faPlus, faEdit, faSave);
+library.add(faCog, faSpinner, faSignOutAlt, faTrash, faPlus, faEdit, faSave, faArrowLeft);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 const firebaseConfig = {
