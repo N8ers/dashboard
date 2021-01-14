@@ -20,7 +20,7 @@
 
     <fieldset :class="showDeleteAccountModal && 'opacity-half'">
       <div class="mb-10">
-        <input type="text" v-model="displayName" class="form-input" />
+        <input type="text" v-model="editedDisplayName" class="form-input" />
         <button @click="updateDisplayName" class="btn-secondary form-btn cursor-pointer">
           Update display name
         </button>
@@ -68,13 +68,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import _clonedeep from 'lodash.clonedeep';
 
 export default {
   name: 'Settings',
   data() {
     return {
-      displayName: null,
+      editedDisplayName: null,
       updatedLocation: null,
       showDeleteAccountModal: false,
       testData: {
@@ -95,7 +96,7 @@ export default {
       });
     },
     updateDisplayName() {
-      this.$store.dispatch('auth/updateDisplayName', this.displayName);
+      this.$store.dispatch('auth/updateDisplayName', this.editedDisplayName);
     },
     logOutUser() {
       this.$store.dispatch('auth/logout');
@@ -114,12 +115,12 @@ export default {
     },
   },
   computed: {
-    location() {
-      return _clonedeep(this.$store.state.db.location);
-    },
-    user() {
-      return _clonedeep(this.$store.state.auth.user);
-    },
+    ...mapState('db', {
+      location: (state) => _clonedeep(state.location),
+    }),
+    ...mapState('auth', {
+      displayName: (state) => _clonedeep(state.user.displayName),
+    }),
     newUserConfirmationEmailSent() {
       return this.$store.state.auth.newUserConfirmationEmailSent;
     },
@@ -135,6 +136,7 @@ export default {
   },
   created() {
     this.$store.dispatch('refreshData');
+    this.editedDisplayName = this.displayName;
   },
 };
 </script>
