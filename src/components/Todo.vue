@@ -71,6 +71,7 @@ export default {
     return {
       editMode: false,
       newTodo: null,
+      todos: [],
     };
   },
   methods: {
@@ -86,12 +87,19 @@ export default {
       this.editMode = false;
       this.$store.dispatch('db/updateTodos', this.todos);
     },
+    setClonedTodos() {
+      this.todos = _clonedeep(this.$store.state.db.todos) || [];
+    },
   },
   computed: {
     ...mapState('db', {
-      todos: (state) => _clonedeep(state.todos),
       todosLoading: (state) => state.todosLoading,
     }),
+  },
+  watch: {
+    '$store.state.db.quickLinks': function () {
+      this.setClonedTodos();
+    },
   },
 };
 </script>
