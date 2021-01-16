@@ -49,6 +49,14 @@ export default ({
       todos.push(newTodo);
       state.todos = todos;
     },
+    addQuickLink(state, newQuickLink) {
+      if (!state.quickLinks) {
+        state.quickLinks = [];
+      }
+      const quickLinks = _clonedeep(state.quickLinks);
+      quickLinks.push(newQuickLink);
+      state.quickLinks = quickLinks;
+    },
   },
   actions: {
     setDummyData() {

@@ -22,7 +22,7 @@
 
     <div>
       <div v-if="editMode" class="mb-10">
-        <div v-for="(site, index) in clonedQuickLinks" :key="site + index">
+        <div v-for="(site, index) in quickLinks" :key="site + index">
           <input v-model="site.name" placeholder="name" class="form-input-sm" />
           <input v-model="site.url" placeholder="url" class="form-input-sm" />
           <button @click="removeQuickLink(index)" class="btn-secondary cursor-pointer">
@@ -43,7 +43,7 @@
       <div v-if="!editMode">
         <span
           class="m-10"
-          v-for="(site, index) in clonedQuickLinks"
+          v-for="(site, index) in quickLinks"
           :key="site + index"
         >
           <button @click="launchFavorite(site.url)" class="btn-secondary cursor-pointer">
@@ -69,7 +69,6 @@ export default {
   data() {
     return {
       editMode: false,
-      clonedQuickLinks: [],
       newLink: {
         name: null,
         url: null,
@@ -79,7 +78,7 @@ export default {
   methods: {
     addQuickLink() {
       const newLink = _clonedeep(this.newLink);
-      this.clonedQuickLinks.push(newLink);
+      this.$store.commit('db/addQuickLink', newLink);
       this.newLink.name = null;
       this.newLink.url = null;
     },
@@ -88,22 +87,17 @@ export default {
     },
     updateQuickLinks() {
       this.editMode = !this.editMode;
-      this.$store.dispatch('db/updateQuickLinks', this.clonedQuickLinks);
+      this.$store.dispatch('db/updateQuickLinks', this.quickLinks);
     },
     removeQuickLink(index) {
       this.clonedQuickLinks.splice(index, 1);
     },
-    setClonedQuickLinks() {
-      this.clonedQuickLinks = _clonedeep(this.$store.state.db.quickLinks) || [];
-    },
   },
-  computed: {},
-  created() {
-    this.setClonedQuickLinks();
-  },
-  watch: {
-    '$store.state.db.quickLinks': function () {
-      this.setClonedQuickLinks();
+  computed: {
+    quickLinks: {
+      get() {
+        return this.$store.state.db.quickLinks;
+      },
     },
   },
 };
