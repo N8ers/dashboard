@@ -1,12 +1,5 @@
 <template>
-  <div>
-    <router-link to="/welcome">
-      <button class="btn-secondary m-10 cursor-pointer">
-        <font-awesome-icon icon="arrow-left" />
-        back
-      </button>
-    </router-link>
-
+  <div class="pt-100">
     <h3>we sent you a confirmation email, you'll need to confirm before continuing</h3>
 
     <div>
@@ -15,6 +8,14 @@
         resend confirmation email
       </button>
     </div>
+
+    <div>Once you've confirmed your email, try loging in!</div>
+    <router-link to="/welcome">
+      <button class="btn-secondary m-10 cursor-pointer">
+        <font-awesome-icon icon="arrow-left" />
+        Login
+      </button>
+    </router-link>
 
   </div>
 </template>

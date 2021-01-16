@@ -16,7 +16,6 @@ const routeHelper = {
     // if user && email is verified
     // route to 'dashboard'
     if (user && !user.emailVerified) {
-      console.log('user && user.emailVerified ', user);
       store.commit('auth/setUser', userData);
       store.dispatch('db/getUserData');
       if (router.currentRoute.name !== 'regester') {
@@ -27,7 +26,14 @@ const routeHelper = {
     } else if (user) {
       store.commit('auth/setUser', userData);
       store.dispatch('db/getUserData');
-      if (router.currentRoute.name !== 'dashboard') {
+      const { location } = store.state.db;
+      const { displayName } = user;
+      const locationStatus = !!(location && location?.address);
+      const displayNameStatus = !!displayName;
+
+      if ((!locationStatus || !displayNameStatus) && router.currentRoute.name !== 'settings') {
+        router.replace('settings');
+      } else if (router.currentRoute.name !== 'dashboard') {
         router.replace('dashboard');
       }
     // if user is not logged in and email is not verified

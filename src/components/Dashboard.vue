@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import Header from './Header.vue';
 import Todo from './Todo.vue';
 import Weather from './Weather.vue';
@@ -32,5 +34,18 @@ export default {
     Favorite,
   },
   methods: {},
+  computed: {
+    ...mapState('db', {
+      address: (state) => state.location.address,
+    }),
+    ...mapState('auth', {
+      displayName: (state) => state.user.displayName,
+    }),
+  },
+  created() {
+    if (!this.address || !this.displayName) {
+      this.$router.replace('settings');
+    }
+  },
 };
 </script>
