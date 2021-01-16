@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import _clonedeep from 'lodash.clonedeep';
 
 Vue.use(Vuex);
 
@@ -39,6 +40,14 @@ export default ({
     },
     setLinksLoadingLoading(state, bool) {
       state.quickLinksLoading = bool;
+    },
+    addTodo(state, newTodo) {
+      if (!state.todos) {
+        state.todos = [];
+      }
+      const todos = _clonedeep(state.todos);
+      todos.push(newTodo);
+      state.todos = todos;
     },
   },
   actions: {

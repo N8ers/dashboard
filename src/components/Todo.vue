@@ -71,13 +71,12 @@ export default {
     return {
       editMode: false,
       newTodo: null,
-      todos: [],
     };
   },
   methods: {
     addTodo() {
       const newTodo = { name: _clonedeep(this.newTodo), completed: false };
-      this.todos.push(newTodo);
+      this.$store.commit('db/addTodo', newTodo);
       this.newTodo = null;
     },
     removeTodo(todoIndex) {
@@ -87,18 +86,15 @@ export default {
       this.editMode = false;
       this.$store.dispatch('db/updateTodos', this.todos);
     },
-    setClonedTodos() {
-      this.todos = _clonedeep(this.$store.state.db.todos) || [];
-    },
   },
   computed: {
     ...mapState('db', {
       todosLoading: (state) => state.todosLoading,
     }),
-  },
-  watch: {
-    '$store.state.db.quickLinks': function () {
-      this.setClonedTodos();
+    todos: {
+      get() {
+        return this.$store.state.db.todos;
+      },
     },
   },
 };
