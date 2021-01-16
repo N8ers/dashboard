@@ -9,6 +9,7 @@
   width: 400px;
   min-width: 400px;
   border: 1px solid black;
+  position: relative;
 }
 
 .todo {
@@ -86,9 +87,15 @@
   margin: 0 auto;
   width: 600px;
   border: 1px solid black;
+  position: relative;
 }
 
-// alerts
+// utility
+.right-align-btn {
+  position: absolute;
+  right: 0;
+}
+
 .error {
   color: $error;
   margin-top: 5px;

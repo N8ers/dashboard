@@ -5,14 +5,14 @@
       <button
         v-if="editMode"
         @click="updateTodos"
-        class="btn-primary mb-10 cursor-pointer pull-right"
+        class="btn-primary mb-10 cursor-pointer right-align-btn"
       >
         <font-awesome-icon icon="save" />
       </button>
       <button
         v-if="!editMode"
         @click="editMode = !editMode"
-        class="btn-primary mb-10 cursor-pointer pull-right"
+        class="btn-primary mb-10 cursor-pointer right-align-btn"
       >
         <font-awesome-icon icon="edit" />
       </button>
