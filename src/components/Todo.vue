@@ -20,6 +20,11 @@
 
     <Loading v-if="todosLoading" />
 
+    <div v-if="!todosLoading && !todosLength && !editMode" class="m-10 pt-10">
+      <div>looks like you haven't added and todos yet!
+         try clicking the pencil icon to add a new todo!</div>
+    </div>
+
     <div v-for="(todo, index) in todos" :key="todo.index" class="todo">
       <div :class="index % 2 === 0 ? 'even-todo': 'odd-todo'" class="row">
         <input
@@ -91,6 +96,9 @@ export default {
     ...mapState('db', {
       todosLoading: (state) => state.todosLoading,
     }),
+    todosLength() {
+      return this.todos?.length;
+    },
     todos: {
       get() {
         return this.$store.state.db.todos;
