@@ -18,7 +18,12 @@
       </button>
     </div>
 
-    <Loading v-if="$store.state.db.quickLinksLoading" />
+    <Loading v-if="quickLinksLoading" />
+
+    <div v-if="!quickLinksLoading && !quickLinksLength && !editMode" class="m-10 pt-10">
+      <div>looks like you haven't added any quickLinks yet!
+         try clicking the pencil icon to add a new url!</div>
+    </div>
 
     <div>
       <div v-if="editMode" class="mb-10">
@@ -57,6 +62,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import _clonedeep from 'lodash.clonedeep';
 
 import Loading from './Loading.vue';
@@ -94,6 +100,12 @@ export default {
     },
   },
   computed: {
+    ...mapState('db', {
+      quickLinksLoading: (state) => state.quickLinksLoading,
+    }),
+    quickLinksLength() {
+      return this.quickLinks?.length;
+    },
     quickLinks: {
       get() {
         return this.$store.state.db.quickLinks;
