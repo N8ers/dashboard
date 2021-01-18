@@ -62,13 +62,24 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import _clonedeep from 'lodash.clonedeep';
 
 import Loading from './Loading.vue';
 
 export default {
   name: 'Todo',
+  props: {
+    todosLoading: {
+      type: Boolean,
+      required: false,
+      default: null,
+    },
+    todos: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+  },
   components: {
     Loading,
   },
@@ -93,16 +104,8 @@ export default {
     },
   },
   computed: {
-    ...mapState('db', {
-      todosLoading: (state) => state.todosLoading,
-    }),
     todosLength() {
       return this.todos?.length;
-    },
-    todos: {
-      get() {
-        return this.$store.state.db.todos;
-      },
     },
   },
 };

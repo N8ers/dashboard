@@ -7,12 +7,13 @@
       </button>
     </router-link>
 
-    <Header />
-    <Favorite />
+    <Header :displayName="user.displayName" />
+
+    <Favorite :quickLinksLoading='quickLinksLoading' :quickLinks='quickLinks' />
 
     <div class="row columns">
-      <Todo class="column" />
-      <Weather class="column" />
+      <Todo :todosLoading='todosLoading' :todos="todos" class="column" />
+      <Weather :location="location" class="column" />
     </div>
   </div>
 </template>
@@ -36,14 +37,18 @@ export default {
   methods: {},
   computed: {
     ...mapState('db', {
-      address: (state) => state.location.address,
+      location: (state) => state.location,
+      todos: (state) => state.todos,
+      todosLoading: (state) => state.todosLoading,
+      quickLinks: (state) => state.quickLinks,
+      quickLinksLoading: (state) => state.quickLinksLoading,
     }),
     ...mapState('auth', {
-      displayName: (state) => state.user.displayName,
+      user: (state) => state.user,
     }),
   },
   created() {
-    if (!this.address || !this.displayName) {
+    if (!this.location?.address || !this.user?.displayName) {
       this.$router.replace('settings');
     }
   },

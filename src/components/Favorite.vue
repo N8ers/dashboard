@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+// import { mapState } from 'vuex';
 import _clonedeep from 'lodash.clonedeep';
 
 import Loading from './Loading.vue';
@@ -71,6 +71,18 @@ export default {
   name: 'Favorite',
   components: {
     Loading,
+  },
+  props: {
+    quickLinksLoading: {
+      type: Boolean,
+      required: false,
+      default: null,
+    },
+    quickLinks: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
   },
   data() {
     return {
@@ -100,16 +112,8 @@ export default {
     },
   },
   computed: {
-    ...mapState('db', {
-      quickLinksLoading: (state) => state.quickLinksLoading,
-    }),
     quickLinksLength() {
       return this.quickLinks?.length;
-    },
-    quickLinks: {
-      get() {
-        return this.$store.state.db.quickLinks;
-      },
     },
   },
 };

@@ -11,6 +11,13 @@ import userSettings from '../../userSettings.json';
 
 export default {
   name: 'Header',
+  props: {
+    displayName: {
+      type: String,
+      required: false,
+      default: 'Friend!',
+    },
+  },
   data() {
     return {
       userSettings,
@@ -21,9 +28,6 @@ export default {
       const today = new Date();
       const day = format(today, 'iiii, MMMM d');
       return day;
-    },
-    displayName() {
-      return this.$store.state.auth.user.displayName;
     },
   },
 };

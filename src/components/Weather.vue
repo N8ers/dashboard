@@ -47,6 +47,13 @@ const weatherKey = process.env.VUE_APP_OpenWeatherKey;
 
 export default {
   name: 'Weather',
+  props: {
+    location: {
+      type: Object,
+      required: false,
+      default: () => {},
+    },
+  },
   components: {
     Loading,
   },
@@ -93,19 +100,11 @@ export default {
         this.dayClass(4),
       ];
     },
-    location() {
-      return this.$store.state.db.location;
-    },
   },
   created() {
     if (this.location.lat && this.location.lng) {
       this.getWeather();
     }
-  },
-  watch: {
-    '$store.state.db.location': function () {
-      this.getWeather();
-    },
   },
 };
 </script>
