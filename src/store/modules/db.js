@@ -120,5 +120,22 @@ export default ({
           });
       }
     },
+    onLoadFetchLocation(context, user) {
+      return new Promise((resolve, reject) => {
+        if (user) {
+          firebase.database().ref(`users/${user.uid}`).once('value')
+            .then((snapshot) => {
+              const { location, todos, quickLinks } = snapshot.val();
+              this.commit('db/setUserData', { location, todos, quickLinks });
+              resolve(location);
+            })
+            .catch((err) => reject(err))
+            .finally(() => {
+              this.commit('db/setTodosLoading', false);
+              this.commit('db/setLinksLoadingLoading', false);
+            });
+        }
+      });
+    },
   },
 });

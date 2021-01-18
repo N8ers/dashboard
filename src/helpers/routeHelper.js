@@ -2,7 +2,7 @@ import router from '../router/index';
 import store from '../store/index';
 
 const routeHelper = {
-  navigateForAuthChange: (user) => {
+  navigateForAuthChange: async (user) => {
     let userData = {};
 
     if (user) {
@@ -25,9 +25,9 @@ const routeHelper = {
     // route to 'regester'
     } else if (user) {
       store.commit('auth/setUser', userData);
-      store.dispatch('db/getUserData');
-      const { location } = store.state.db;
+      const location = await store.dispatch('db/onLoadFetchLocation', user);
       const { displayName } = user;
+
       const locationStatus = !!(location && location?.address);
       const displayNameStatus = !!displayName;
 
