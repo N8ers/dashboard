@@ -62,7 +62,6 @@
 </template>
 
 <script>
-// import { mapState } from 'vuex';
 import _clonedeep from 'lodash.clonedeep';
 
 import Loading from './Loading.vue';
