@@ -18,7 +18,7 @@
       </button>
     </div>
 
-    <Loading v-if="quickLinksLoading" />
+    <Spinner v-if="quickLinksLoading" message="LOADING" />
 
     <div v-if="!quickLinksLoading && !quickLinksLength && !editMode" class="m-10 pt-10">
       <div>looks like you haven't added any quickLinks yet!
@@ -64,12 +64,12 @@
 <script>
 import _clonedeep from 'lodash.clonedeep';
 
-import Loading from './Loading.vue';
+import Spinner from './Spinner.vue';
 
 export default {
   name: 'Favorite',
   components: {
-    Loading,
+    Spinner,
   },
   props: {
     quickLinksLoading: {

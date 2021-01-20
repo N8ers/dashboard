@@ -18,7 +18,7 @@
       </button>
     </div>
 
-    <Loading v-if="todosLoading" />
+    <Spinner v-if="todosLoading" message="LOADING" />
 
     <div v-if="!todosLoading && !todosLength && !editMode" class="m-10 pt-10">
       <div>looks like you haven't added and todos yet!
@@ -64,7 +64,7 @@
 <script>
 import _clonedeep from 'lodash.clonedeep';
 
-import Loading from './Loading.vue';
+import Spinner from './Spinner.vue';
 
 export default {
   name: 'Todo',
@@ -81,7 +81,7 @@ export default {
     },
   },
   components: {
-    Loading,
+    Spinner,
   },
   data() {
     return {
