@@ -83,6 +83,7 @@ export default ({
         .catch((err) => this.commit('auth/setSignupAlert', err.message));
     },
     login(context, user) {
+      this.commit('auth/setLoginAlert', null);
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(() => {
           firebase.auth().signInWithEmailAndPassword(user.email, user.password)
