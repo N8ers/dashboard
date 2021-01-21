@@ -1,10 +1,7 @@
 <template>
   <div>
-    <div>
-      <router-link to="/">
-        <button class="btn-secondary mt-10 cursor-pointer">Back</button>
-      </router-link>
-      <button @click="logOutUser" class="btn-secondary ml-10 mt-10 cursor-pointer">
+    <div class="block">
+      <button @click="logOutUser" class="right-align-btn btn-secondary m-10 cursor-pointer">
         LogOut
         <font-awesome-icon icon="sign-out-alt" />
       </button>
@@ -21,6 +18,7 @@
         <button @click="updateDisplayName" class="btn-secondary form-btn cursor-pointer">
           Update display name
         </button>
+        <Spinner v-if="savingDisplayName" message="Saving" />
       </div>
 
       <div>
@@ -34,13 +32,20 @@
         <button @click="setNewLocation" class="btn-secondary form-btn cursor-pointer">
           Update location
         </button>
+        <Spinner v-if="savingLocation" message="Saving" />
       </div>
+    </fieldset>
 
+    <router-link to="/">
+      <button class="btn-primary mt-10 cursor-pointer">Back to Dashboard</button>
+    </router-link>
+
+    <div class="mt-lg">
       <button
         @click="showDeleteAccountModal = !showDeleteAccountModal"
-        class="btn-secondary mt-10 cursor-pointer"
+        class="btn-secondary cursor-pointer"
       >delete account?</button>
-    </fieldset>
+    </div>
 
     <div v-if="showDeleteAccountModal" class="mt-10">
       <h3 class="m-10">If you delete your account all user data will be destroyed</h3>
@@ -68,8 +73,13 @@
 import { mapState } from 'vuex';
 import _clonedeep from 'lodash.clonedeep';
 
+import Spinner from './Spinner.vue';
+
 export default {
   name: 'Settings',
+  components: {
+    Spinner,
+  },
   data() {
     return {
       editedDisplayName: null,
@@ -114,9 +124,11 @@ export default {
   computed: {
     ...mapState('db', {
       location: (state) => _clonedeep(state.location),
+      savingLocation: (state) => _clonedeep(state.savingLocation),
     }),
     ...mapState('auth', {
       displayName: (state) => _clonedeep(state.user.displayName),
+      savingDisplayName: (state) => _clonedeep(state.savingDisplayName),
     }),
     newUserConfirmationEmailSent() {
       return this.$store.state.auth.newUserConfirmationEmailSent;

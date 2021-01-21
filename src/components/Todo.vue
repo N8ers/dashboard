@@ -1,5 +1,9 @@
 <template>
-  <div class="todo-wrapper">
+  <div
+    class="todo-wrapper"
+    @mouseover="mouseIsOverComponent = true"
+    @mouseleave="mouseIsOverComponent = false"
+  >
     <div class="title h-30">
       <h3 class="inline">ToDo</h3>
       <button
@@ -10,7 +14,7 @@
         <font-awesome-icon icon="save" />
       </button>
       <button
-        v-if="!editMode"
+        v-if="!editMode && mouseIsOverComponent"
         @click="editMode = !editMode"
         class="btn-primary mb-10 cursor-pointer right-align-btn"
       >
@@ -18,7 +22,7 @@
       </button>
     </div>
 
-    <Loading v-if="todosLoading" />
+    <Spinner v-if="todosLoading" message="LOADING" />
 
     <div v-if="!todosLoading && !todosLength && !editMode" class="m-10 pt-10">
       <div>looks like you haven't added and todos yet!
@@ -64,7 +68,7 @@
 <script>
 import _clonedeep from 'lodash.clonedeep';
 
-import Loading from './Loading.vue';
+import Spinner from './Spinner.vue';
 
 export default {
   name: 'Todo',
@@ -81,12 +85,13 @@ export default {
     },
   },
   components: {
-    Loading,
+    Spinner,
   },
   data() {
     return {
       editMode: false,
       newTodo: null,
+      mouseIsOverComponent: false,
     };
   },
   methods: {

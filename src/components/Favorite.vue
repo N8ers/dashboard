@@ -1,5 +1,9 @@
 <template>
-  <div class='favorite-wrapper'>
+  <div
+    class='favorite-wrapper'
+    @mouseover="mouseIsOverComponent = true"
+    @mouseleave="mouseIsOverComponent = false"
+  >
     <div class="title h-30">
       <h3 class="inline">Quick Launch</h3>
       <button
@@ -10,7 +14,7 @@
         <font-awesome-icon icon="save" />
       </button>
       <button
-        v-if="!editMode"
+        v-if="!editMode && mouseIsOverComponent"
         @click="editMode = !editMode"
         class="btn-primary mb-10 cursor-pointer right-align-btn"
       >
@@ -18,11 +22,12 @@
       </button>
     </div>
 
-    <Loading v-if="quickLinksLoading" />
+    <Spinner v-if="quickLinksLoading" message="LOADING" />
 
     <div v-if="!quickLinksLoading && !quickLinksLength && !editMode" class="m-10 pt-10">
-      <div>looks like you haven't added any quickLinks yet!
-         try clicking the pencil icon to add a new url!</div>
+      <div>looks like you haven't added any quickLinks yet!</div>
+      <div>quick links are like bookmarks.</div>
+      <div>you set a name and the <b>full</b> url you want to go to.</div>
     </div>
 
     <div>
@@ -64,12 +69,12 @@
 <script>
 import _clonedeep from 'lodash.clonedeep';
 
-import Loading from './Loading.vue';
+import Spinner from './Spinner.vue';
 
 export default {
   name: 'Favorite',
   components: {
-    Loading,
+    Spinner,
   },
   props: {
     quickLinksLoading: {
@@ -90,6 +95,7 @@ export default {
         name: null,
         url: null,
       },
+      mouseIsOverComponent: false,
     };
   },
   methods: {
@@ -107,7 +113,8 @@ export default {
       this.$store.dispatch('db/updateQuickLinks', this.quickLinks);
     },
     removeQuickLink(index) {
-      this.clonedQuickLinks.splice(index, 1);
+      console.log('index ', index);
+      this.quickLinks.splice(index, 1);
     },
   },
   computed: {

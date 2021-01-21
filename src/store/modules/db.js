@@ -19,6 +19,7 @@ export default ({
     quickLinks: [],
     todosLoading: false,
     quickLinksLoading: false,
+    savingLocation: null,
   },
   mutations: {
     setUserData(state, { location, todos, quickLinks }) {
@@ -57,6 +58,9 @@ export default ({
       quickLinks.push(newQuickLink);
       state.quickLinks = quickLinks;
     },
+    setSavingLocation(state, bool) {
+      state.savingLocation = bool;
+    },
   },
   actions: {
     setDummyData() {
@@ -87,11 +91,13 @@ export default ({
       });
     },
     setNewLocation(context, location) {
+      this.commit('db/setSavingLocation', true);
       const user = firebase.auth().currentUser;
       return firebase.database().ref(`users/${user.uid}`).child('location').set(location)
         .then(() => {
           this.dispatch('db/getUserData');
-        });
+        })
+        .finally(() => this.commit('db/setSavingLocation', false));
     },
     updateQuickLinks(context, quickLinks) {
       const user = firebase.auth().currentUser;

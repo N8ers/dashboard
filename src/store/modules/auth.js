@@ -17,25 +17,15 @@ export default ({
     },
     newUserConfirmationEmailSent: null,
     loginErrorMessage: null,
+    savingDisplayName: null,
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload;
-      // router.replace('dashboard');
-
-      // router.replace('settings');
-      // const { currentUser } = firebase.auth();
-      // console.log('currentUser ', currentUser);
-      // if (!currentUser?.displayName) {
-      // router.replace('settings');
-      // } else {
-      // router.replace('dashboard');
-      // }
     },
     setSignUp(state, user) {
       state.user.email = user.email;
       state.user.uid = user.uid;
-      // router.replace('settings');
     },
     clearUserState(state) {
       state.user = {
@@ -54,6 +44,9 @@ export default ({
     setSignupAlert(state, message) {
       state.signupErrorMessage = message;
     },
+    setSavingDisplayName(state, bool) {
+      state.savingDisplayName = bool;
+    },
   },
   actions: {
     getUser() {
@@ -68,10 +61,12 @@ export default ({
       }
     },
     updateDisplayName(context, displayName) {
+      this.commit('auth/setSavingDisplayName', true);
       const user = firebase.auth().currentUser;
       return user.updateProfile({ displayName })
         .then(() => this.dispatch('auth/getUser'))
-        .catch((err) => console.log('error: ', err));
+        .catch((err) => console.log('error: ', err))
+        .finally(() => this.commit('auth/setSavingDisplayName', false));
     },
     createUser(context, newUser) {
       const { email, password } = newUser;
@@ -83,6 +78,7 @@ export default ({
         .catch((err) => this.commit('auth/setSignupAlert', err.message));
     },
     login(context, user) {
+      this.commit('auth/setLoginAlert', null);
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(() => {
           firebase.auth().signInWithEmailAndPassword(user.email, user.password)
