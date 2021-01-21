@@ -26,8 +26,8 @@
 
     <div v-if="!quickLinksLoading && !quickLinksLength && !editMode" class="m-10 pt-10">
       <div>looks like you haven't added any quickLinks yet!</div>
-      <p>quick links are like bookmarks, you set a name and the
-        <b>full</b> url you want to go to.</p>
+      <div>quick links are like bookmarks.</div>
+      <div>you set a name and the <b>full</b> url you want to go to.</div>
     </div>
 
     <div>
