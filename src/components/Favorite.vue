@@ -1,5 +1,9 @@
 <template>
-  <div class='favorite-wrapper'>
+  <div
+    class='favorite-wrapper'
+    @mouseover="mouseIsOverComponent = true"
+    @mouseleave="mouseIsOverComponent = false"
+  >
     <div class="title h-30">
       <h3 class="inline">Quick Launch</h3>
       <button
@@ -10,7 +14,7 @@
         <font-awesome-icon icon="save" />
       </button>
       <button
-        v-if="!editMode"
+        v-if="!editMode && mouseIsOverComponent"
         @click="editMode = !editMode"
         class="btn-primary mb-10 cursor-pointer right-align-btn"
       >
@@ -90,6 +94,7 @@ export default {
         name: null,
         url: null,
       },
+      mouseIsOverComponent: false,
     };
   },
   methods: {

@@ -1,5 +1,9 @@
 <template>
-  <div class="todo-wrapper">
+  <div
+    class="todo-wrapper"
+    @mouseover="mouseIsOverComponent = true"
+    @mouseleave="mouseIsOverComponent = false"
+  >
     <div class="title h-30">
       <h3 class="inline">ToDo</h3>
       <button
@@ -10,7 +14,7 @@
         <font-awesome-icon icon="save" />
       </button>
       <button
-        v-if="!editMode"
+        v-if="!editMode && mouseIsOverComponent"
         @click="editMode = !editMode"
         class="btn-primary mb-10 cursor-pointer right-align-btn"
       >
@@ -87,6 +91,7 @@ export default {
     return {
       editMode: false,
       newTodo: null,
+      mouseIsOverComponent: false,
     };
   },
   methods: {
