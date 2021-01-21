@@ -25,8 +25,9 @@
     <Spinner v-if="quickLinksLoading" message="LOADING" />
 
     <div v-if="!quickLinksLoading && !quickLinksLength && !editMode" class="m-10 pt-10">
-      <div>looks like you haven't added any quickLinks yet!
-         try clicking the pencil icon to add a new url!</div>
+      <div>looks like you haven't added any quickLinks yet!</div>
+      <p>quick links are like bookmarks, you set a name and the
+        <b>full</b> url you want to go to.</p>
     </div>
 
     <div>
