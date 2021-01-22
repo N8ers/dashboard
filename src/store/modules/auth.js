@@ -107,13 +107,11 @@ export default ({
       const user = firebase.auth().currentUser;
       if (user && !user.emailVerified) {
         user.sendEmailVerification()
-          .then((res) => console.log('res ', res))
           .catch((err) => console.log('err ', err));
       }
     },
     sendRecoverPasswordEmail(context, email) {
       firebase.auth().sendPasswordResetEmail(email)
-        .then(() => console.log('sent'))
         .catch((err) => console.log('error: ', err));
     },
     deleteAccount() {

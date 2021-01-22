@@ -113,7 +113,6 @@ export default {
       this.$store.dispatch('db/updateQuickLinks', this.quickLinks);
     },
     removeQuickLink(index) {
-      console.log('index ', index);
       this.quickLinks.splice(index, 1);
     },
   },

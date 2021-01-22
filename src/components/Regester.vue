@@ -40,7 +40,6 @@ export default {
       const autocomplete = new window.google.maps.places.Autocomplete(this.$refs.search);
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
-        console.log({ place });
         this.location = {
           address: place.formatted_address,
           lat: place.geometry.location.lat(),
