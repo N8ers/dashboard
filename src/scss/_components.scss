@@ -90,6 +90,15 @@
   position: relative;
 }
 
+@media screen and (max-width: 893px) {
+  .favorite-wrapper {
+    margin: 0 auto;
+    width: 400px;
+    border: 1px solid black;
+    position: relative;
+  }
+}
+
 // utility
 .right-align-btn {
   position: absolute;
