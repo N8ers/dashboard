@@ -9,7 +9,12 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {},
   mutations: {},
-  actions: {},
+  actions: {
+    refreshData() {
+      this.dispatch('auth/getUser');
+      this.dispatch('db/getUserData');
+    },
+  },
   modules: {
     auth,
     db,
