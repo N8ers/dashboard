@@ -7,7 +7,9 @@
       </button>
     </router-link>
 
-    <Header :displayName="user.displayName" />
+    <br />
+
+    <Header :displayName="user.displayName" class="mb-20" />
 
     <Favorite :quickLinksLoading='quickLinksLoading' :quickLinks='quickLinks' />
 

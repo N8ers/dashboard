@@ -4,19 +4,19 @@
     @mouseover="mouseIsOverComponent = true"
     @mouseleave="mouseIsOverComponent = false"
   >
-    <div class="title h-30">
-      <h3 class="inline">Quick Launch</h3>
+    <div class="title mb-10">
+      <h3 class="inline p-5">Quick Launch</h3>
       <button
         v-if="editMode"
         @click="updateQuickLinks"
-        class="btn-primary mb-10 cursor-pointer right-align-btn"
+        class="btn-primary cursor-pointer right-align-btn"
       >
         <font-awesome-icon icon="save" />
       </button>
       <button
         v-if="!editMode && mouseIsOverComponent"
         @click="editMode = !editMode"
-        class="btn-primary mb-10 cursor-pointer right-align-btn"
+        class="btn-primary cursor-pointer right-align-btn"
       >
         <font-awesome-icon icon="edit" />
       </button>
@@ -50,16 +50,16 @@
         </form>
       </div>
 
-      <div v-if="!editMode">
-        <span
-          class="m-10"
+      <div v-if="!editMode" class="mb-10">
+        <div
+          class="inline m-5"
           v-for="(site, index) in quickLinks"
           :key="site + index"
         >
-          <button @click="launchFavorite(site.url)" class="btn-secondary cursor-pointer">
+          <button @click="launchFavorite(site.url)" class="btn-primary cursor-pointer">
             {{ site.name }}
           </button>
-        </span>
+        </div>
       </div>
     </div>
 
