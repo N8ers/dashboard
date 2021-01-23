@@ -4,7 +4,7 @@
     @mouseover="mouseIsOverComponent = true"
     @mouseleave="mouseIsOverComponent = false"
   >
-    <div class="title mb-10">
+    <div class="title h-30 mb-10">
       <h3 class="inline p-5">Quick Launch</h3>
       <button
         v-if="editMode"
