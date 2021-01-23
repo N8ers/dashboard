@@ -23,10 +23,12 @@
 
 .even-todo {
   background-color: $gray;
+  min-height: 29px;
 }
 
 .odd-todo {
   background-color: $gray-darker;
+  min-height: 29px;
 }
 
 .row {

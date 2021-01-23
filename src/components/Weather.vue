@@ -1,6 +1,8 @@
 <template>
   <div class='weather-wrapper'>
-    <h3 class="title h-30">{{ location.address }}</h3>
+    <div class="title h30">
+      <h3 class="p-5">{{ location.address }}</h3>
+    </div>
 
     <Spinner v-if='!weather' />
 
