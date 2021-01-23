@@ -7,7 +7,6 @@
 
 <script>
 import { format } from 'date-fns';
-import userSettings from '../../userSettings.json';
 
 export default {
   name: 'Header',
@@ -19,9 +18,7 @@ export default {
     },
   },
   data() {
-    return {
-      userSettings,
-    };
+    return {};
   },
   computed: {
     date() {

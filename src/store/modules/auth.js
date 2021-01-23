@@ -18,6 +18,7 @@ export default ({
     newUserConfirmationEmailSent: null,
     loginErrorMessage: null,
     savingDisplayName: null,
+    signupErrorMessage: null,
   },
   mutations: {
     setUser(state, payload) {
@@ -69,10 +70,16 @@ export default ({
         .finally(() => this.commit('auth/setSavingDisplayName', false));
     },
     createUser(context, newUser) {
+      this.commit('auth/setSignupAlert', null);
       const { email, password } = newUser;
+      if (!email?.length || !password?.length) {
+        const message = 'You need an email and a password to register';
+        this.commit('auth/setSignupAlert', message);
+        return;
+      }
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
-          this.dispatch('auth/verifyEmail', result);
+          this.dispatch('auth/sendVerifcationEmail', result);
           this.commit('auth/newUserConfirmationEmailSent', true);
         })
         .catch((err) => this.commit('auth/setSignupAlert', err.message));
@@ -103,7 +110,7 @@ export default ({
         })
         .catch((err) => console.log('error: ', err));
     },
-    verifyEmail() {
+    sendVerifcationEmail() {
       const user = firebase.auth().currentUser;
       if (user && !user.emailVerified) {
         user.sendEmailVerification()
@@ -117,17 +124,11 @@ export default ({
     deleteAccount() {
       const user = firebase.auth().currentUser;
       user.delete()
-        .then(() => console.log('deleted'))
         .catch((err) => console.log('error: ', err));
     },
     getEmailValidationStatus() {
       const user = firebase.auth().currentUser;
       return user.emailVerified;
-    },
-    async completeRegerestration(context, payload) {
-      await this.dispatch('auth/updateDisplayName', payload.displayName);
-      await this.dispatch('db/setNewLocation', payload.location);
-      router.replace('/');
     },
   },
 });

@@ -63,40 +63,11 @@ export default ({
     },
   },
   actions: {
-    setDummyData() {
-      const user = firebase.auth().currentUser;
-
-      const todos = [
-        { name: 'walk cat', completed: false },
-        { name: 'throw rock', completed: true },
-      ];
-
-      const quickLinks = [
-        { name: 'npr', url: 'https://www.npr.org/' },
-        { name: 'reddit', url: 'https://www.reddit.com/' },
-        { name: 'github', url: 'https://github.com/N8ers' },
-        { name: 'trello', url: 'https://trello.com/b/8eP70Sbi/todo' },
-      ];
-
-      const location = {
-        address: 'Seattle, WA, USA',
-        lat: '47.6062095',
-        lng: '47.6062095',
-      };
-
-      firebase.database().ref(`users/${user.uid}`).set({
-        todo: todos,
-        location,
-        quickLinks,
-      });
-    },
     setNewLocation(context, location) {
       this.commit('db/setSavingLocation', true);
       const user = firebase.auth().currentUser;
       return firebase.database().ref(`users/${user.uid}`).child('location').set(location)
-        .then(() => {
-          this.dispatch('db/getUserData');
-        })
+        .then(() => this.dispatch('db/getUserData'))
         .finally(() => this.commit('db/setSavingLocation', false));
     },
     updateQuickLinks(context, quickLinks) {
