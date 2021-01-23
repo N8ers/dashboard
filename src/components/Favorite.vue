@@ -56,7 +56,7 @@
           v-for="(site, index) in quickLinks"
           :key="site + index"
         >
-          <button @click="launchFavorite(site.url)" class="btn-primary cursor-pointer">
+          <button @click="launchFavorite(site.url)" class="btn-secondary cursor-pointer">
             {{ site.name }}
           </button>
         </div>
