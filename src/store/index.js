@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import dummyEndpoint from '../../userSettings.json';
 import auth from './modules/auth';
 import db from './modules/db';
 
@@ -29,9 +28,6 @@ export default new Vuex.Store({
   actions: {
     updateLocation(context, location) {
       this.commit('setLocation', location);
-    },
-    getFavoriteSites() {
-      this.commit('setFavoriteSites', dummyEndpoint.favoriteSites);
     },
     updateFavoriteSites(context, sites) {
       this.commit('setFavoriteSites', sites);
