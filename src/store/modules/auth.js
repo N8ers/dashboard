@@ -18,6 +18,7 @@ export default ({
     newUserConfirmationEmailSent: null,
     loginErrorMessage: null,
     savingDisplayName: null,
+    signupErrorMessage: null,
   },
   mutations: {
     setUser(state, payload) {
@@ -69,7 +70,13 @@ export default ({
         .finally(() => this.commit('auth/setSavingDisplayName', false));
     },
     createUser(context, newUser) {
+      this.commit('auth/setSignupAlert', null);
       const { email, password } = newUser;
+      if (!email?.length || !password?.length) {
+        const message = 'You need an email and a password to register';
+        this.commit('auth/setSignupAlert', message);
+        return;
+      }
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
           this.dispatch('auth/verifyEmail', result);
@@ -117,7 +124,6 @@ export default ({
     deleteAccount() {
       const user = firebase.auth().currentUser;
       user.delete()
-        .then(() => console.log('deleted'))
         .catch((err) => console.log('error: ', err));
     },
     getEmailValidationStatus() {

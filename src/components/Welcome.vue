@@ -18,9 +18,7 @@
           class="auth-input"
         />
         <button class="btn-primary cursor-pointer" type="submit">Login!</button>
-        <div v-if="$store.state.auth.loginErrorMessage" class="error">
-          {{ $store.state.auth.loginErrorMessage }}
-        </div>
+        <div v-if="loginErrorMessage" class="error">{{ loginErrorMessage }}</div>
       </fieldset>
     </form>
 
@@ -40,9 +38,7 @@
           class="auth-input"
         />
         <button class="btn-primary cursor-pointer">Signup!</button>
-        <div v-if="$store.state.auth.signupErrorMessage" class="error">
-          {{ $store.state.auth.signupErrorMessage }}
-        </div>
+        <div v-if="signupErrorMessage" class="error">{{ signupErrorMessage }}</div>
       </fieldset>
     </form>
 
@@ -79,6 +75,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 
 export default {
   name: 'Welcome',
@@ -114,6 +111,12 @@ export default {
     toggleSignInSignUp() {
       this.showSignIn = !this.showSignIn;
     },
+  },
+  computed: {
+    ...mapState('auth', {
+      loginErrorMessage: (state) => state.loginErrorMessage,
+      signupErrorMessage: (state) => state.signupErrorMessage,
+    }),
   },
   created() {
     this.$store.dispatch('refreshData');
