@@ -48,7 +48,7 @@ export default {
       });
     },
     sendEmailVerification() {
-      this.$store.dispatch('auth/verifyEmail');
+      this.$store.dispatch('auth/sendVerifcationEmail');
     },
   },
   computed: {

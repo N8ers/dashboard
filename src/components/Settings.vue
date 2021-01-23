@@ -109,7 +109,7 @@ export default {
       this.$store.dispatch('auth/logout');
     },
     sendEmailVerification() {
-      this.$store.dispatch('auth/verifyEmail');
+      this.$store.dispatch('auth/sendVerifcationEmail');
     },
     deleteAccount() {
       this.$store.dispatch('auth/deleteAccount');

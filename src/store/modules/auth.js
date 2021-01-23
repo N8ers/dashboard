@@ -79,7 +79,7 @@ export default ({
       }
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
-          this.dispatch('auth/verifyEmail', result);
+          this.dispatch('auth/sendVerifcationEmail', result);
           this.commit('auth/newUserConfirmationEmailSent', true);
         })
         .catch((err) => this.commit('auth/setSignupAlert', err.message));
@@ -110,7 +110,7 @@ export default ({
         })
         .catch((err) => console.log('error: ', err));
     },
-    verifyEmail() {
+    sendVerifcationEmail() {
       const user = firebase.auth().currentUser;
       if (user && !user.emailVerified) {
         user.sendEmailVerification()
@@ -129,11 +129,6 @@ export default ({
     getEmailValidationStatus() {
       const user = firebase.auth().currentUser;
       return user.emailVerified;
-    },
-    async completeRegerestration(context, payload) {
-      await this.dispatch('auth/updateDisplayName', payload.displayName);
-      await this.dispatch('db/setNewLocation', payload.location);
-      router.replace('/');
     },
   },
 });
