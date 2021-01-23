@@ -24,49 +24,13 @@
 export default {
   name: 'Regester',
   data() {
-    return {
-      displayName: null,
-      location: {
-        address: null,
-        lat: null,
-        lng: null,
-      },
-      showDisplayNameError: false,
-      showLocationError: false,
-    };
+    return {};
   },
   methods: {
-    initLocationSearch() {
-      const autocomplete = new window.google.maps.places.Autocomplete(this.$refs.search);
-      autocomplete.addListener('place_changed', () => {
-        const place = autocomplete.getPlace();
-        this.location = {
-          address: place.formatted_address,
-          lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng(),
-        };
-      });
-    },
     sendEmailVerification() {
       this.$store.dispatch('auth/sendVerifcationEmail');
     },
   },
-  computed: {
-    displayNameIsValid() {
-      if (this.displayName?.length) {
-        return true;
-      }
-      return false;
-    },
-    locationIsValid() {
-      if (this.location.address && this.location.lat && this.location.lng) {
-        return true;
-      }
-      return false;
-    },
-  },
-  mounted() {
-    window.checkAndAttachMapScript(this.initLocationSearch);
-  },
+  computed: {},
 };
 </script>
