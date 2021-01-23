@@ -33,8 +33,8 @@
     <div>
       <div v-if="editMode" class="mb-10">
         <div v-for="(site, index) in quickLinks" :key="site + index">
-          <input v-model="site.name" placeholder="name" class="form-input-sm" />
-          <input v-model="site.url" placeholder="url" class="form-input-sm" />
+          <input v-model="site.name" placeholder="name" class="form-input-md" />
+          <input v-model="site.url" placeholder="url" class="form-input-md" />
           <button @click="removeQuickLink(index)" class="btn-secondary cursor-pointer">
             <font-awesome-icon icon="trash" />
           </button>
@@ -42,8 +42,8 @@
 
         <form @submit.prevent="addQuickLink">
           <h3>add new quick link</h3>
-          <input v-model="newLink.name" placeholder="name" class="form-input-sm" />
-          <input v-model="newLink.url" placeholder="url" class="form-input-sm" />
+          <input v-model="newLink.name" placeholder="name" class="form-input-md" />
+          <input v-model="newLink.url" placeholder="url" class="form-input-md" />
           <button class="btn-secondary cursor-pointer">
             <font-awesome-icon icon="plus" />
           </button>
