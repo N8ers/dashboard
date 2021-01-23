@@ -58,14 +58,6 @@
         class="btn-secondary form-btn-tall cursor-pointer"
       >Yes, Delete My Account</button>
     </div>
-
-    <br />
-    <br />
-    <br />
-    <fieldset v-if="appIsInDevelopmentMode">
-      <button @click="setTestData">reset test data</button>
-      <button @click="sendEmailVerification">send email verification</button>
-    </fieldset>
   </div>
 </template>
 
@@ -108,14 +100,8 @@ export default {
     logOutUser() {
       this.$store.dispatch('auth/logout');
     },
-    sendEmailVerification() {
-      this.$store.dispatch('auth/sendVerifcationEmail');
-    },
     deleteAccount() {
       this.$store.dispatch('auth/deleteAccount');
-    },
-    setTestData() {
-      this.$store.dispatch('db/setDummyData');
     },
     setNewLocation() {
       this.$store.dispatch('db/setNewLocation', this.updatedLocation);
@@ -132,12 +118,6 @@ export default {
     }),
     newUserConfirmationEmailSent() {
       return this.$store.state.auth.newUserConfirmationEmailSent;
-    },
-    appIsInDevelopmentMode() {
-      if (process.env.NODE_ENV === 'development') {
-        return true;
-      }
-      return false;
     },
   },
   mounted() {
