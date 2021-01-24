@@ -8,26 +8,26 @@
 
     <div v-if='weather'>
 
-      <div class="current column-2-even">
-        <div class="colum align-left">
+      <div class="column-2-even">
+        <div>
           <div class="current-temp">{{ currently.temp }}&#176;F</div>
           <div class="current-humidity">{{ currently.humidity }}% humidity</div>
         </div>
-        <div class="columns-internal">
-          <img class="current-icon" :src="'http://openweathermap.org/img/w/' + currently.icon + '.png'" />
+        <div>
+          <img :src="'http://openweathermap.org/img/w/' + currently.icon + '.png'" />
           <div>{{ currently.description }}</div>
         </div>
       </div>
 
       <div v-for="(day, index) in forcast" :key="day.day">
         <div :class="index % 2 === 0 ? 'even-day': 'odd-day'" class="columns-internal">
-          <div class="forcast-column align-left">
+          <div class="forcast-column align-left weather-grid-item-1">
             <span class="">{{ day.day }}</span>
           </div>
-          <div class="forcast-column">
+          <div class="forcast-column weather-grid-item-2">
             <span> <img :src="'http://openweathermap.org/img/w/' + day.icon + '.png'" /></span>
           </div>
-          <div class="forcast-column align-right">
+          <div class="forcast-column align-right weather-grid-item-3">
             <span>{{ day.hi }}&#176;</span>
             <span> | </span>
             <span>{{ day.lo }}&#176;</span>
