@@ -112,7 +112,7 @@
   background-color: $gray-lighter;
   margin-right: auto;
   text-align: left;
-  width: 100%;
+  width: calc(100% - 28px);
   padding-left: 28px;
 }
 
