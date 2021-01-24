@@ -30,8 +30,16 @@
   margin-top: 20px;
 }
 
+.mt-40 {
+  margin-top: 40px;
+}
+
 .mt-lg {
   margin-top: 100px;
+}
+
+.ml-40 {
+  margin-left: 40px;
 }
 
 .ml-4 {
@@ -54,12 +62,16 @@
   padding-top: 10px;
 }
 
-.pt-10 {
-  padding: 10px;
+.pt-20 {
+  padding-top: 20px;
 }
 
 .pt-100 {
   padding-top: 100px;
+}
+
+.pl-28 {
+  padding-left: 28px;
 }
 
 .align-left {
@@ -70,8 +82,24 @@
   text-align: right;
 }
 
+.w-200 {
+  width: 200px;
+}
+
+.w-250 {
+  width: 250px;
+}
+
 .w-300 {
   width: 300px;
+}
+
+.w-320 {
+  width: 320px;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .h-30 {

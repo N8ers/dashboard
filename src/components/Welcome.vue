@@ -1,76 +1,91 @@
 <template>
-  <div>
-    <h1 class="pt-100">Welcome to dashboard!</h1>
+  <div class="grid-container">
 
-    <!-- LOG IN -->
-    <form v-if="showSignIn && !showRecoverEmail" @submit.prevent="loginUser">
-      <fieldset class="auth-card">
-        <input
-          type="email"
-          v-model="returningUser.email"
-          placeholder="email"
-          class="auth-input"
-        />
-        <input
-          type="password"
-          v-model="returningUser.password"
-          placeholder="password"
-          class="auth-input"
-        />
-        <button class="btn-primary cursor-pointer" type="submit">Login!</button>
-        <div v-if="loginErrorMessage" class="error">{{ loginErrorMessage }}</div>
-      </fieldset>
-    </form>
+    <div class="grid-item-1">
+      <div>
+        <h1 v-if="showSignIn" class="pt-100 align-left pl-28">Sign In</h1>
+        <h1 v-if="!showSignIn" class="pt-100 align-left pl-28">Sign Up</h1>
+        <!-- LOG IN -->
+        <form v-if="showSignIn && !showRecoverEmail" @submit.prevent="loginUser">
+          <fieldset class="auth-card">
+            <input
+              type="email"
+              v-model="returningUser.email"
+              placeholder="email"
+              class="auth-input"
+            />
+            <input
+              type="password"
+              v-model="returningUser.password"
+              placeholder="password"
+              class="auth-input"
+            />
+            <button class="btn-primary cursor-pointer w-320" type="submit">Login!</button>
+            <div v-if="loginErrorMessage" class="error">{{ loginErrorMessage }}</div>
+          </fieldset>
+        </form>
 
-    <!-- SIGN UP -->
-    <form v-if="!showSignIn && !showRecoverEmail" @submit.prevent="createUser">
-      <fieldset class="auth-card">
-        <input
-          type="email"
-          v-model="creatingUser.email"
-          placeholder="email"
-          class="auth-input"
-        />
-        <input
-          type="password"
-          v-model="creatingUser.password"
-          placeholder="password"
-          class="auth-input"
-        />
-        <button class="btn-primary cursor-pointer">Signup!</button>
-        <div v-if="signupErrorMessage" class="error">{{ signupErrorMessage }}</div>
-      </fieldset>
-    </form>
+        <!-- SIGN UP -->
+        <form v-if="!showSignIn && !showRecoverEmail" @submit.prevent="createUser">
+          <fieldset class="auth-card">
+            <input
+              type="email"
+              v-model="creatingUser.email"
+              placeholder="email"
+              class="auth-input"
+            />
+            <input
+              type="password"
+              v-model="creatingUser.password"
+              placeholder="password"
+              class="auth-input"
+            />
+            <button class="btn-primary cursor-pointer w-320">Signup!</button>
+            <div v-if="signupErrorMessage" class="error">{{ signupErrorMessage }}</div>
+          </fieldset>
+        </form>
 
-    <!-- RECOVER PASSWORD -->
-    <form v-if="showRecoverEmail">
-      <fieldset class="auth-card">
-        <input type="email" v-model="recovery.email" placeholder="email" class="auth-input" />
+        <!-- RECOVER PASSWORD -->
+        <form v-if="showRecoverEmail">
+          <fieldset class="auth-card">
+            <input type="email" v-model="recovery.email" placeholder="email" class="auth-input" />
+            <button
+              @click='recoverPassword'
+              class="btn-primary cursor-pointer w-320"
+            >send email to recover your password!</button>
+            <div v-if="emailRecoverySent">An email will be sent shortly, check your inbox</div>
+          </fieldset>
+        </form>
+
+        <!-- TOGGLE BUTTONS -->
         <button
-          @click='recoverPassword'
-          class="btn-primary cursor-pointer"
-        >send email to recover your password!</button>
-        <div v-if="emailRecoverySent">An email will be sent shortly, check your inbox</div>
-      </fieldset>
-    </form>
+          v-if="!showRecoverEmail"
+          @click="toggleSignInSignUp"
+          class="auth-button btn-secondary cursor-pointer w-320"
+        >
+          <span v-if="showSignIn">Create an account</span>
+          <span v-if="!showSignIn">already have an account?</span>
+        </button>
 
-    <!-- TOGGLE BUTTONS -->
-    <button
-      v-if="!showRecoverEmail"
-      @click="toggleSignInSignUp"
-      class="auth-button btn-secondary cursor-pointer"
-    >
-      <span v-if="showSignIn">need to create an account?</span>
-      <span v-if="!showSignIn">already have an account?</span>
-    </button>
+        <button
+          @click="showRecoverEmail = !showRecoverEmail"
+          class="auth-button btn-lite cursor-pointer w-320"
+        >
+          <span v-if="!showRecoverEmail">forgot your password?</span>
+          <span v-if="showRecoverEmail">sign in</span>
+        </button>
+      </div>
+    </div>
 
-    <button
-      @click="showRecoverEmail = !showRecoverEmail"
-      class="auth-button btn-secondary cursor-pointer"
-    >
-      <span v-if="!showRecoverEmail">forgot your password?</span>
-      <span v-if="showRecoverEmail">sign in</span>
-    </button>
+    <div class="grid-item-2">
+      <h1 class="pt-100">Welcome to dashboard!</h1>
+      <p class="welcome-message">
+        Dashboard is a landing page to help organize your day! <br>
+        You can save your favorite links for fast access, <br>
+        keep track of your todos, and get a peek at the weather
+      </p>
+      <img class="welcome-img" src="../../public/welcome.png" />
+    </div>
   </div>
 </template>
 

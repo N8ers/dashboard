@@ -101,6 +101,55 @@
   }
 }
 
+// Welcome.vue
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.grid-item-1 {
+  margin-left: auto;
+  width: 375px;
+}
+
+.grid-item-2 {
+  height: 100vh;
+  background-color: $gray-lighter;
+  margin-right: auto;
+  text-align: left;
+  width: 100%;
+  padding-left: 28px;
+}
+
+.welcome-message {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 18px;
+}
+
+.welcome-img {
+  width: 400px;
+}
+
+@media screen and (max-width: 900px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .grid-item-1 {
+    margin: 0 auto;
+    width: 375px;
+  }
+
+  .grid-item-2 {
+    background-color: $gray-lighter;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
 // utility
 .right-align-btn {
   position: absolute;
