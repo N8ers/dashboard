@@ -7,13 +7,15 @@
       </button>
     </router-link>
 
-    <Header :displayName="user.displayName" />
+    <br />
+
+    <Header :displayName="user.displayName" class="mb-20 pt-20" />
 
     <Favorite :quickLinksLoading='quickLinksLoading' :quickLinks='quickLinks' />
 
     <div class="row columns">
-      <Todo :todosLoading='todosLoading' :todos="todos" class="column" />
-      <Weather :location="location" class="column" />
+      <Todo :todosLoading='todosLoading' :todos="todos" class="column dashboard-grid-item-1" />
+      <Weather :location="location" class="column dashboard-grid-item-2" />
     </div>
   </div>
 </template>

@@ -5,7 +5,7 @@
     @mouseleave="mouseIsOverComponent = false"
   >
     <div class="title h-30">
-      <h3 class="inline">ToDo</h3>
+      <h3 class="inline p-5">ToDo</h3>
       <button
         v-if="editMode"
         @click="updateTodos"
@@ -34,18 +34,22 @@
         <input
           v-if="!editMode"
           type="checkbox"
-          class="cursor-pointer"
+          class="cursor-pointer m-8"
           v-model="todo.completed"
           @change="updateTodos"
         />
         <span
           v-if="!editMode"
-          class="ml-10"
+          class="ml-10 cursor-pointer"
+          @click="toggleCompleted(todo)"
           :class="todo.completed && 'completed-todo'"
         >{{ todo.name }}</span>
 
-        <input v-if="editMode" class="ml-10 form-input-sm w-300" type="text" v-model="todo.name" />
-        <button v-if="editMode" @click="removeTodo(index)" class="btn-secondary cursor-pointer">
+        <input v-if="editMode" class="ml-10 form-input-sm" type="text" v-model="todo.name" />
+        <button
+          v-if="editMode"
+          @click="removeTodo(index)"
+          class="btn-secondary cursor-pointer ml-4">
           <font-awesome-icon icon="trash" />
         </button>
       </div>
@@ -55,9 +59,9 @@
       <input
         type="text"
         v-model="newTodo"
-        class="ml-10 form-input-sm w-300"
+        class="ml-10 form-input-sm"
         placeholder="new todo..." />
-      <button class="btn-secondary cursor-pointer">
+      <button class="btn-secondary cursor-pointer ml-4">
         <font-awesome-icon icon="plus" />
       </button>
     </form>
@@ -106,6 +110,13 @@ export default {
     updateTodos() {
       this.editMode = false;
       this.$store.dispatch('db/updateTodos', this.todos);
+    },
+    toggleCompleted(completedTodo) {
+      for (let i = 0; i < this.todos.length; i++) {
+        if (this.todos[i].name === completedTodo.name) {
+          this.todos[i].completed = !completedTodo.completed;
+        }
+      }
     },
   },
   computed: {

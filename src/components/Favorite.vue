@@ -4,19 +4,19 @@
     @mouseover="mouseIsOverComponent = true"
     @mouseleave="mouseIsOverComponent = false"
   >
-    <div class="title h-30">
-      <h3 class="inline">Quick Launch</h3>
+    <div class="title h-30 mb-10">
+      <h3 class="inline p-5">Quick Launch</h3>
       <button
         v-if="editMode"
         @click="updateQuickLinks"
-        class="btn-primary mb-10 cursor-pointer right-align-btn"
+        class="btn-primary cursor-pointer right-align-btn"
       >
         <font-awesome-icon icon="save" />
       </button>
       <button
         v-if="!editMode && mouseIsOverComponent"
         @click="editMode = !editMode"
-        class="btn-primary mb-10 cursor-pointer right-align-btn"
+        class="btn-primary cursor-pointer right-align-btn"
       >
         <font-awesome-icon icon="edit" />
       </button>
@@ -33,8 +33,8 @@
     <div>
       <div v-if="editMode" class="mb-10">
         <div v-for="(site, index) in quickLinks" :key="site + index">
-          <input v-model="site.name" placeholder="name" class="form-input-sm" />
-          <input v-model="site.url" placeholder="url" class="form-input-sm" />
+          <input v-model="site.name" placeholder="name" class="form-input-md" />
+          <input v-model="site.url" placeholder="url" class="form-input-md" />
           <button @click="removeQuickLink(index)" class="btn-secondary cursor-pointer">
             <font-awesome-icon icon="trash" />
           </button>
@@ -42,24 +42,24 @@
 
         <form @submit.prevent="addQuickLink">
           <h3>add new quick link</h3>
-          <input v-model="newLink.name" placeholder="name" class="form-input-sm" />
-          <input v-model="newLink.url" placeholder="url" class="form-input-sm" />
+          <input v-model="newLink.name" placeholder="name" class="form-input-md" />
+          <input v-model="newLink.url" placeholder="url" class="form-input-md" />
           <button class="btn-secondary cursor-pointer">
             <font-awesome-icon icon="plus" />
           </button>
         </form>
       </div>
 
-      <div v-if="!editMode">
-        <span
-          class="m-10"
+      <div v-if="!editMode" class="mb-10">
+        <div
+          class="inline m-5"
           v-for="(site, index) in quickLinks"
           :key="site + index"
         >
           <button @click="launchFavorite(site.url)" class="btn-secondary cursor-pointer">
             {{ site.name }}
           </button>
-        </span>
+        </div>
       </div>
     </div>
 
