@@ -9,7 +9,7 @@
 
     <br />
 
-    <Header :displayName="user.displayName" class="mb-20" />
+    <Header :displayName="user.displayName" class="mb-20 pt-20" />
 
     <Favorite :quickLinksLoading='quickLinksLoading' :quickLinks='quickLinks' />
 
