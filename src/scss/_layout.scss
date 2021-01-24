@@ -3,14 +3,44 @@ fieldset {
 }
 
 .columns {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+}
+
+.column-2-even {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .columns-internal {
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.dashboard-grid-item-1 {
+  margin-left: auto;
+  justify-self: right;
+}
+
+.dashboard-grid-item-2 {
+  margin-right: auto;
+  justify-self: left;
+}
+
+@media screen and (max-width: 900px) {
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid-item-1 {
+    justify-self: center;
+  }
+
+  .dashboard-grid-item-2 {
+    justify-self: center;
+  }
 }
 
 .column {

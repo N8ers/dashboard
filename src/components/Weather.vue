@@ -8,12 +8,12 @@
 
     <div v-if='weather'>
 
-      <div class="current columns-internal">
+      <div class="current column-2-even">
         <div class="colum align-left">
           <div class="current-temp">{{ currently.temp }}&#176;F</div>
           <div class="current-humidity">{{ currently.humidity }}% humidity</div>
         </div>
-        <div class="colum">
+        <div class="columns-internal">
           <img class="current-icon" :src="'http://openweathermap.org/img/w/' + currently.icon + '.png'" />
           <div>{{ currently.description }}</div>
         </div>
