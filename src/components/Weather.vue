@@ -4,7 +4,24 @@
       <h3 class="p-5">{{ location.address }}</h3>
     </div>
 
-    <Spinner v-if='!weather' />
+    <Spinner v-if='!weather && !weatherError' />
+
+    <div v-if='weatherError'>
+      <h4 class="mt-10">We ran into a problem getting your weather!</h4>
+
+      <p class="mt-10">
+        This app is using the openweathermap api (http), and this app is running on https.
+        Sometimes there are issues with the cors prefix used to query the openweathermap api.
+      </p>
+
+      <p class="mt-10">
+        Sorry for the inconvenience,
+        feel free to run this app locally with your own api key if you'd like!
+      </p>
+      <div class="mt-10 btn-primary">
+        <a href="https://github.com/N8ers/dashboard">dashboard source code</a>
+      </div>
+    </div>
 
     <div v-if='weather'>
 
@@ -62,6 +79,7 @@ export default {
   data() {
     return {
       weather: null,
+      weatherError: null,
     };
   },
   methods: {
@@ -74,7 +92,11 @@ export default {
       const devUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly&appid=${apiKey}&units=${units}`;
       const url = process.env.NODE_ENV === 'production' ? prodUrl : devUrl;
       const response = await axios.get(url);
-      this.weather = response.data;
+      if (response.status === 403) {
+        this.weatherError = true;
+      } else {
+        this.weather = response.data;
+      }
     },
     dayClass(dayIndex) {
       const day = dayIndex ? format(addDays(new Date(), dayIndex), 'iiii') : 'Today';
