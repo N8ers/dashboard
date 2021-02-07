@@ -67,10 +67,12 @@ export default {
   methods: {
     async getWeather() {
       const apiKey = weatherKey;
-      // const corsPrefix = 'https://cors-anywhere.herokuapp.com/';
+      const corsPrefix = 'https://cors-anywhere.herokuapp.com/';
       const units = 'imperial';
       const { lat, lng } = this.location;
-      const url = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly&appid=${apiKey}&units=${units}`;
+      const prodUrl = `${corsPrefix}http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly&appid=${apiKey}&units=${units}`;
+      const devUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly&appid=${apiKey}&units=${units}`;
+      const url = process.env.NODE_ENV === 'production' ? prodUrl : devUrl;
       const response = await axios.get(url);
       this.weather = response.data;
     },
