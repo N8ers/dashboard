@@ -7,6 +7,10 @@ To see more projects, [click here](https://nathansheryak.com/) to visit my portf
 
 ## Project setup
 
+To run this project you will need to create a firebase project.
+Then use put the firebase config variables into a .env file.
+Those config values will be used in main.js.
+
 ```
 npm install
 npm run serve
