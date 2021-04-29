@@ -4,7 +4,17 @@
       <h3 class="p-5">{{ location.address }}</h3>
     </div>
 
-    <Spinner v-if='!weather && !weatherError' />
+    <div class="p-10 m-10">
+      <div class="p-10">
+        This application is running on an https server for better security. Unfortunatly the weather API's free tier only allows for http. This causes an issue with mixed http/https content. 
+      </div>
+      <div class="p-10">
+        If you're interested in funding that API cost for this project, or if you want to run this project yourself, you can contact me or find the code on my 
+        <a href="https://github.com/N8ers" target="_blank">GitHub</a>.
+      </div>  
+    </div>
+
+    <!-- <Spinner v-if='!weather && !weatherError' /> -->
 
     <div v-if='weatherError'>
       <h4 class="mt-10">We ran into a problem getting your weather!</h4>
